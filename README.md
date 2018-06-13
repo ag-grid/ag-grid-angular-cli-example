@@ -4,7 +4,7 @@ ag-Grid-angular-examples - angular-cli
 
 Example of using ag-Grid with Angular and TypeScript
 
-**Note** We only show the "Rich Grid" example in use here. For the full set of examples please look under the **../ngtools_webpack** folder
+**Note** We only show the "Rich Grid" example in use here. For the full set of examples please look under refer to `www.ag-grid.com`
 
 Building
 ========
@@ -18,23 +18,15 @@ Dev Server
 
 To build & run:
 
-- `ng serve`
+- `npm start`
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
 Building
 ========
 
-To build:
+To do a prod build (with AOT):
 
-- `ng build`
-
-To do a prod build:
-
-- `ng build --prod`
-
-To do a AOT build:
-
-- `ng build --aot`
+- `npm run build`
 
 The build artifacts will be stored in the `dist/` directory.
