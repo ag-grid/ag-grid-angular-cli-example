@@ -1,10 +1,12 @@
 
-ag-Grid-angular-examples - angular-cli
+ag-Grid Angular CLI Example
 ==================================
 
-Example of using ag-Grid with Angular and TypeScript
+Example of using ag-Grid with Angular and TypeScript, using the Angular CLI to build and serve the application.
 
-**Note** We only show the "Rich Grid" example in use here. For the full set of examples please look under refer to [www.ag-grid.com](https://www.ag-grid.com)
+**Note** We only show the "Rich Grid" example in use here. 
+
+For the full set of examples please look under refer to [www.ag-grid.com](https://www.ag-grid.com)
 
 Building
 ========
