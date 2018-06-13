@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "outDir": "../out-tsc/app",
+    "target": "es5",
+    "module": "es2015",
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "ag-grid/*": [
+        "../node_modules/ag-grid/*"
+      ]
+    }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
+}
