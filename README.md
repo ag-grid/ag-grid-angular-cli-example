@@ -4,7 +4,7 @@ ag-Grid-angular-examples - angular-cli
 
 Example of using ag-Grid with Angular and TypeScript
 
-**Note** We only show the "Rich Grid" example in use here. For the full set of examples please look under refer to `www.ag-grid.com`
+**Note** We only show the "Rich Grid" example in use here. For the full set of examples please look under refer to [www.ag-grid.com](https://www.ag-grid.com)
 
 Building
 ========
