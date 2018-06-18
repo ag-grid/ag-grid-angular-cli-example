@@ -3,6 +3,11 @@
   "version": "18.0.0",
   "description": "ag-Grid Angular Example Using Angular CLI",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ag-grid/ag-grid-angular-cli.git"
+  },
+  "author": "Sean Landsman <sean@thelandsmans.com>",
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --port 8080",
