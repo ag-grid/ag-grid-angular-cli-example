@@ -18,6 +18,9 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ],
+      "ag-grid": [
+        "../node_modules/ag-grid"
+      ],
       "ag-grid/*": [
         "../node_modules/ag-grid/*"
       ]
