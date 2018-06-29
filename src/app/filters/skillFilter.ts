@@ -1,21 +1,21 @@
 import RefData from '../data/refData';
 import {IFilter,IFilterParams} from "ag-grid/main";
 
-var SKILL_TEMPLATE =
-    '<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">' +
-    '  <span>' +
-    '    <div style="text-align: center;">SKILL_NAME</div>' +
-    '    <div>' +
-    '      <input type="checkbox"/>' +
-    '      <img src="images/skills/SKILL.png" width="30px"/>' +
-    '    </div>' +
-    '  </span>' +
-    '</label>';
+const SKILL_TEMPLATE =
+    `<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">
+        <span>    
+            <div style="text-align: center;">SKILL_NAME</div>    
+            <div>
+                <input type="checkbox"/>      
+                <img src="images/skills/SKILL.png" width="30px"/>    
+            </div>  
+        </span>
+    </label>`;
 
-var FILTER_TITLE =
-    '<div style="text-align: center; background: lightgray; width: 100%; display: block; border-bottom: 1px solid grey;">' +
-    '<b>TITLE_NAME</b>' +
-    '</div>';
+const FILTER_TITLE =
+    `<div style="text-align: center; background: lightgray; width: 100%; display: block; border-bottom: 1px solid grey;">
+        <b>TITLE_NAME</b>
+    </div>`;
 
 export default class SkillFilter implements IFilter {
     private filterChangedCallback:Function;
@@ -33,21 +33,20 @@ export default class SkillFilter implements IFilter {
     };
 
     public getGui() {
-        var eGui = document.createElement('div');
+        const eGui = document.createElement('div');
         eGui.style.width = '380px';
-        var eInstructions = document.createElement('div');
+        const eInstructions = document.createElement('div');
         eInstructions.innerHTML = FILTER_TITLE.replace('TITLE_NAME', 'Custom Skills Filter');
         eGui.appendChild(eInstructions);
 
-        var that = this;
+        const that = this;
 
         RefData.IT_SKILLS.forEach(function (skill, index) {
-            var skillName = RefData.IT_SKILLS_NAMES[index];
-            var eSpan = document.createElement('span');
-            var html = SKILL_TEMPLATE.replace("SKILL_NAME", skillName).replace("SKILL", skill);
-            eSpan.innerHTML = html;
+            const skillName = RefData.IT_SKILLS_NAMES[index];
+            const eSpan = document.createElement('span');
+            eSpan.innerHTML = SKILL_TEMPLATE.replace("SKILL_NAME", skillName).replace("SKILL", skill);
 
-            var eCheckbox = <HTMLInputElement> eSpan.querySelector('input');
+            const eCheckbox = <HTMLInputElement> eSpan.querySelector('input');
             eCheckbox.addEventListener('click', function () {
                 that.model[skill] = eCheckbox.checked;
                 that.filterChangedCallback();
@@ -61,9 +60,9 @@ export default class SkillFilter implements IFilter {
 
     public doesFilterPass(params) {
 
-        var rowSkills = params.data.skills;
-        var model = this.model;
-        var passed = true;
+        const rowSkills = params.data.skills;
+        const model = this.model;
+        let passed = true;
 
         RefData.IT_SKILLS.forEach(function (skill) {
             if (model[skill]) {
@@ -77,9 +76,8 @@ export default class SkillFilter implements IFilter {
     };
 
     public isFilterActive() {
-        var model = this.model;
-        var somethingSelected = model.android || model.css || model.html5 || model.mac || model.windows;
-        return somethingSelected;
+        const model = this.model;
+        return model.android || model.css || model.html5 || model.mac || model.windows;
     };
 
     public getModel():any {
