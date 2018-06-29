@@ -2,7 +2,8 @@
     <h1>Rich Grid Example</h1>
     <div style="padding: 4px;">
         <div style="float: right;">
-            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilterInput" placeholder="Type text to filter..."/>
+            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilterInput"
+                   placeholder="Type text to filter..."/>
             <button [disabled]="!showGrid" (click)="showGrid=false">Destroy Grid</button>
             <button [disabled]="showGrid" (click)="showGrid=true">Create Grid</button>
         </div>
@@ -42,45 +43,45 @@
 
         <ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham"
 
-                     [gridOptions]="gridOptions"
-                     [columnDefs]="columnDefs"
-                     [showToolPanel]="showToolPanel"
-                     [rowData]="rowData"
+                         [gridOptions]="gridOptions"
+                         [columnDefs]="columnDefs"
+                         [showToolPanel]="showToolPanel"
+                         [rowData]="rowData"
 
-                     enableColResize
-                     enableSorting
-                     enableFilter
-                     groupHeaders
-                     suppressRowClickSelection
-                     toolPanelSuppressGroups
-                     toolPanelSuppressValues
-                     rowSelection="multiple"
+                         enableColResize
+                         enableSorting
+                         enableFilter
+                         groupHeaders
+                         suppressRowClickSelection
+                         toolPanelSuppressGroups
+                         toolPanelSuppressValues
+                         rowSelection="multiple"
 
-                     (modelUpdated)="onModelUpdated()"
-                     (cellClicked)="onCellClicked($event)"
-                     (cellDoubleClicked)="onCellDoubleClicked($event)"
-                     (cellContextMenu)="onCellContextMenu($event)"
-                     (cellValueChanged)="onCellValueChanged($event)"
-                     (cellFocused)="onCellFocused($event)"
-                     (rowSelected)="onRowSelected($event)"
-                     (selectionChanged)="onSelectionChanged()"
-                     (beforeFilterChanged)="onBeforeFilterChanged()"
-                     (afterFilterChanged)="onAfterFilterChanged()"
-                     (filterModified)="onFilterModified()"
-                     (beforeSortChanged)="onBeforeSortChanged()"
-                     (afterSortChanged)="onAfterSortChanged()"
-                     (virtualRowRemoved)="onVirtualRowRemoved($event)"
-                     (rowClicked)="onRowClicked($event)"
-                     (gridReady)="onReady($event)"
+                         (modelUpdated)="onModelUpdated()"
+                         (cellClicked)="onCellClicked($event)"
+                         (cellDoubleClicked)="onCellDoubleClicked($event)"
+                         (cellContextMenu)="onCellContextMenu($event)"
+                         (cellValueChanged)="onCellValueChanged($event)"
+                         (cellFocused)="onCellFocused($event)"
+                         (rowSelected)="onRowSelected($event)"
+                         (selectionChanged)="onSelectionChanged()"
+                         (beforeFilterChanged)="onBeforeFilterChanged()"
+                         (afterFilterChanged)="onAfterFilterChanged()"
+                         (filterModified)="onFilterModified()"
+                         (beforeSortChanged)="onBeforeSortChanged()"
+                         (afterSortChanged)="onAfterSortChanged()"
+                         (virtualRowRemoved)="onVirtualRowRemoved($event)"
+                         (rowClicked)="onRowClicked($event)"
+                         (gridReady)="onReady($event)"
 
-                     (columnEverythingChanged)="onColumnEvent($event)"
-                     (columnRowGroupChanged)="onColumnEvent($event)"
-                     (columnValueChanged)="onColumnEvent($event)"
-                     (columnMoved)="onColumnEvent($event)"
-                     (columnVisible)="onColumnEvent($event)"
-                     (columnGroupOpened)="onColumnEvent($event)"
-                     (columnResized)="onColumnEvent($event)"
-                     (columnPinnedCountChanged)="onColumnEvent($event)">
+                         (columnEverythingChanged)="onColumnEvent($event)"
+                         (columnRowGroupChanged)="onColumnEvent($event)"
+                         (columnValueChanged)="onColumnEvent($event)"
+                         (columnMoved)="onColumnEvent($event)"
+                         (columnVisible)="onColumnEvent($event)"
+                         (columnGroupOpened)="onColumnEvent($event)"
+                         (columnResized)="onColumnEvent($event)"
+                         (columnPinnedCountChanged)="onColumnEvent($event)">
         </ag-grid-angular>
     </div>
 

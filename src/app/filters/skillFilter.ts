@@ -1,5 +1,5 @@
 import RefData from '../data/refData';
-import {IFilter,IFilterParams} from "ag-grid/main";
+import {IFilter, IFilterParams} from "ag-grid/main";
 
 const SKILL_TEMPLATE =
     `<label style="border: 1px solid lightgrey; margin: 4px; padding: 4px; display: inline-block;">
@@ -18,10 +18,10 @@ const FILTER_TITLE =
     </div>`;
 
 export default class SkillFilter implements IFilter {
-    private filterChangedCallback:Function;
-    private model:any;
+    private filterChangedCallback: Function;
+    private model: any;
 
-    public init(params: IFilterParams) : void {
+    public init(params: IFilterParams): void {
         this.filterChangedCallback = params.filterChangedCallback;
         this.model = {
             android: false,
@@ -80,11 +80,11 @@ export default class SkillFilter implements IFilter {
         return model.android || model.css || model.html5 || model.mac || model.windows;
     };
 
-    public getModel():any {
+    public getModel(): any {
         return undefined;
     }
 
-    public setModel(model:any):void {
+    public setModel(model: any): void {
     }
 }
 
