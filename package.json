@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-angular-cli-example",
-  "version": "18.0.0",
+  "version": "18.1.0",
   "description": "ag-Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
     "@angular/platform-browser-dynamic": "6.0.3",
     "@angular/platform-server": "6.0.3",
     "@angular/router": "6.0.3",
-    "ag-grid": "^18.0.0",
-    "ag-grid-angular": "^18.0.0",
-    "ag-grid-enterprise": "^18.0.0",
+    "ag-grid": "^18.1.0",
+    "ag-grid-angular": "^18.1.0",
+    "ag-grid-enterprise": "^18.1.0",
     "bootstrap": "3.3.7",
     "core-js": "2.5.5",
     "rxjs": "6.2.0",
