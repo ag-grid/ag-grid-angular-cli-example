@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "@angular/core";
+import {Component, ElementRef, OnDestroy} from "@angular/core";
 import {IHeaderParams} from "ag-grid/main";
 import {IHeaderAngularComp} from "ag-grid-angular/main";
 
@@ -10,7 +10,7 @@ interface MyParams extends IHeaderParams {
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.css']
 })
-export class HeaderComponent implements IHeaderAngularComp {
+export class HeaderComponent implements OnDestroy, IHeaderAngularComp {
     public params: MyParams;
     public sorted: string;
     private elementRef: ElementRef;

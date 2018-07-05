@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnDestroy} from "@angular/core";
 import {IDateParams} from "ag-grid/main";
 import {IDateAngularComp} from "ag-grid-angular/main";
 
@@ -8,7 +8,7 @@ import {IDateAngularComp} from "ag-grid-angular/main";
     templateUrl: 'date.component.html',
     styleUrls: ['date.component.css'],
 })
-export class DateComponent implements IDateAngularComp {
+export class DateComponent implements OnDestroy, IDateAngularComp {
     private date: Date;
     private params: IDateParams;
     public dd: string = '';
@@ -45,11 +45,13 @@ export class DateComponent implements IDateAngularComp {
     }
 
     setDate(date: Date): void {
-        this.dd = date.getDate() + '';
-        this.mm = (date.getMonth() + 1) + '';
-        this.yyyy = date.getFullYear() + '';
-        this.date = date;
-        this.params.onDateChanged();
+        if (date) {
+            this.dd = date.getDate() + '';
+            this.mm = (date.getMonth() + 1) + '';
+            this.yyyy = date.getFullYear() + '';
+            this.date = date;
+            this.params.onDateChanged();
+        }
     }
 
     //*********************************************************************************
@@ -78,8 +80,8 @@ export class DateComponent implements IDateAngularComp {
         //return Sat Dec 01    1 00:00:00 GMT+0000 (GMT) - Go figure...
         //To ensure that we are not letting non sensical dates to go through we check that the resultant
         //javascript date parts (month, year and day) match the given date fields provided as parameters.
-        //If the javascript date parts don't match the provided fields, we assume that the input is non
-        //sensical... ie: Day=-1 or month=14, if this is the case, we return null
+        //If the javascript date parts don't match the provided fields, we assume that the input is nonsensical
+        // ... ie: Day=-1 or month=14, if this is the case, we return null
         //This also protects us from non sensical dates like dd=31, mm=2 of any year
         if (date.getDate() != day || date.getMonth() + 1 != month || date.getFullYear() != year) {
             return null;
