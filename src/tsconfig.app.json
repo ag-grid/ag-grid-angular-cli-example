@@ -18,11 +18,11 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ],
-      "ag-grid": [
-        "../node_modules/ag-grid"
+      "ag-grid-community": [
+        "../node_modules/ag-grid-community"
       ],
-      "ag-grid/*": [
-        "../node_modules/ag-grid/*"
+      "ag-grid-community/*": [
+        "../node_modules/ag-grid-community/*"
       ]
     }
   },

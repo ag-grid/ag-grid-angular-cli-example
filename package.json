@@ -30,7 +30,7 @@
     "@angular/platform-browser-dynamic": "6.0.9",
     "@angular/platform-server": "6.0.9",
     "@angular/router": "6.0.9",
-    "ag-grid": "^18.1.1",
+    "ag-grid-community": "^18.1.1",
     "ag-grid-angular": "^18.1.0",
     "ag-grid-enterprise": "^18.1.1",
     "bootstrap": "3.3.7",
