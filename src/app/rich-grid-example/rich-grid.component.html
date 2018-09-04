@@ -34,8 +34,8 @@
         <div style="clear: both;"></div>
         <div style="padding: 4px;" class="toolbar">
             <label>
-                <input type="checkbox" (change)="showToolPanel=$event.target.checked"/>
-                Show Tool Panel
+                <input type="checkbox" (change)="sideBar=$event.target.checked"/>
+                Show Side Bar
             </label>
             <button (click)="createRowData()">Refresh Data</button>
         </div>
@@ -45,16 +45,13 @@
 
                          [gridOptions]="gridOptions"
                          [columnDefs]="columnDefs"
-                         [showToolPanel]="showToolPanel"
+                         [sideBar]="sideBar"
                          [rowData]="rowData"
 
                          enableColResize
                          enableSorting
                          enableFilter
-                         groupHeaders
                          suppressRowClickSelection
-                         toolPanelSuppressGroups
-                         toolPanelSuppressValues
                          rowSelection="multiple"
 
                          (modelUpdated)="onModelUpdated()"
