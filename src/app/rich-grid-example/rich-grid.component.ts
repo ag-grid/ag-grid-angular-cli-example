@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from "@angular/core";
-import {GridOptions} from "ag-grid-community";
+import { Component, ViewEncapsulation } from "@angular/core";
+import { GridOptions } from "ag-grid-community";
 
 import ProficiencyFilter from '../filters/proficiencyFilter';
 import SkillFilter from '../filters/skillFilter';
@@ -7,9 +7,9 @@ import RefData from '../data/refData';
 // only import this if you are using the ag-Grid-Enterprise
 import 'ag-grid-enterprise';
 
-import {HeaderGroupComponent} from "../header-group-component/header-group.component";
-import {DateComponent} from "../date-component/date.component";
-import {HeaderComponent} from "../header-component/header.component";
+import { HeaderGroupComponent } from "../header-group-component/header-group.component";
+import { DateComponent } from "../date-component/date.component";
+import { HeaderComponent } from "../header-component/header.component";
 
 @Component({
     selector: 'rich-grid',
@@ -24,9 +24,6 @@ export class RichGridComponent {
     public rowData: any[];
     private columnDefs: any[];
     public rowCount: string;
-    public dateComponentFramework: DateComponent;
-    public HeaderGroupComponent = HeaderGroupComponent;
-
 
     constructor() {
         // we pass an empty gridOptions in, so we can grab the api out
@@ -36,6 +33,9 @@ export class RichGridComponent {
         this.showGrid = true;
         this.gridOptions.dateComponentFramework = DateComponent;
         this.gridOptions.defaultColDef = {
+            resizable: true,
+            sortable: true,
+            filter: true,
             headerComponentFramework: <{ new(): HeaderComponent }>HeaderComponent,
             headerComponentParams: {
                 menuIcon: 'fa-bars'
@@ -78,7 +78,7 @@ export class RichGridComponent {
                 headerName: '#',
                 width: 30,
                 checkboxSelection: true,
-                suppressSorting: true,
+                sortable: false,
                 suppressMenu: true,
                 pinned: true
             },
@@ -123,7 +123,7 @@ export class RichGridComponent {
                     {
                         headerName: "Skills",
                         width: 125,
-                        suppressSorting: true,
+                        sortable: false,
                         cellRenderer: skillsCellRenderer,
                         filter: SkillFilter
                     },
@@ -141,18 +141,18 @@ export class RichGridComponent {
                     {
                         field: "mobile",
                         width: 150,
-                        filter: 'text'
+                        filter: 'agTextColumnFilter'
                     },
                     {
                         headerName: "Land-line",
                         field: "landline",
                         width: 150,
-                        filter: 'text'
+                        filter: 'agTextColumnFilter'
                     },
                     {
                         field: "address",
                         width: 500,
-                        filter: 'text'
+                        filter: 'agTextColumnFilter'
                     }
                 ]
             }
@@ -252,7 +252,7 @@ export class RichGridComponent {
 function skillsCellRenderer(params) {
     const data = params.data;
     const skills = [];
-    RefData.IT_SKILLS.forEach(function (skill) {
+    RefData.IT_SKILLS.forEach(function(skill) {
         if (data && data.skills && data.skills[skill]) {
             skills.push('<img src="images/skills/' + skill + '.png" width="16px" title="' + skill + '" />');
         }
