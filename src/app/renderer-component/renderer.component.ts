@@ -7,7 +7,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
     `
 })
 export class RendererComponent implements OnInit {
-    private value: any;
+    value: any;
 
     // a simple renderer just to illustrate that normal Angular DI will work in grid components
     constructor(private renderer: Renderer2, private el: ElementRef) {
