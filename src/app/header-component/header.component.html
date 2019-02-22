@@ -1,6 +1,7 @@
 <div>
-    <div [hidden]="!params.enableMenu" class="customHeaderMenuButton" (click)="onMenuClick()"><i
-            class="{{'fa ' + params.menuIcon}}"></i></div>
+    <div [hidden]="!params.enableMenu" class="customHeaderMenuButton" (click)="onMenuClick()">
+        <i class="{{'fa ' + params.menuIcon}}"></i>
+    </div>
     <div class="customHeaderLabel">{{params.displayName}}</div>
     <div [hidden]="!params.enableSorting" class="{{'customSortDownLabel'+ (this.sorted === 'desc' ? ' active' : '') }}"
          (click)="onSortRequested('desc', $event)">

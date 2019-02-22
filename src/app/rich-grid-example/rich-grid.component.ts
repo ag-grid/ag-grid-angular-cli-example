@@ -10,6 +10,7 @@ import 'ag-grid-enterprise';
 import { HeaderGroupComponent } from "../header-group-component/header-group.component";
 import { DateComponent } from "../date-component/date.component";
 import { HeaderComponent } from "../header-component/header.component";
+import { RendererComponent } from "../renderer-component/renderer.component";
 
 @Component({
     selector: 'rich-grid',
@@ -26,21 +27,27 @@ export class RichGridComponent {
     public rowCount: string;
 
     constructor() {
-        // we pass an empty gridOptions in, so we can grab the api out
-        this.gridOptions = <GridOptions>{};
+        this.showGrid = true;
+        this.gridOptions = <GridOptions>{
+            dateComponent: 'dateComponent',
+            defaultColDef: {
+                resizable: true,
+                sortable: true,
+                filter: true,
+                headerComponent: 'customHeaderComponent',
+                headerComponentParams: {
+                    menuIcon: 'fa-bars'
+                }
+            },
+            frameworkComponents: {
+                customHeaderComponent: HeaderComponent,
+                dateComponent: DateComponent,
+                headerGroupComponent: HeaderGroupComponent,
+                rendererComponent: RendererComponent
+            }
+        };
         this.createRowData();
         this.createColumnDefs();
-        this.showGrid = true;
-        this.gridOptions.dateComponentFramework = DateComponent;
-        this.gridOptions.defaultColDef = {
-            resizable: true,
-            sortable: true,
-            filter: true,
-            headerComponentFramework: <{ new(): HeaderComponent }>HeaderComponent,
-            headerComponentParams: {
-                menuIcon: 'fa-bars'
-            }
-        }
     }
 
     private createRowData() {
@@ -84,7 +91,7 @@ export class RichGridComponent {
             },
             {
                 headerName: 'Employee',
-                headerGroupComponentFramework: HeaderGroupComponent,
+                headerGroupComponent: 'headerGroupComponent',
                 children: [
                     {
                         field: "name",
@@ -140,6 +147,7 @@ export class RichGridComponent {
                 children: [
                     {
                         field: "mobile",
+                        cellRendererFramework: RendererComponent,
                         width: 150,
                         filter: 'agTextColumnFilter'
                     },

@@ -1,15 +1,16 @@
-import {NgModule} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 // ag-grid
-import {AgGridModule} from "ag-grid-angular";
+import { AgGridModule } from "ag-grid-angular";
 // application
-import {AppComponent} from "./app.component";
+import { AppComponent } from "./app.component";
 // rich grid
-import {RichGridComponent} from "./rich-grid-example/rich-grid.component";
-import {DateComponent} from "./date-component/date.component";
-import {HeaderComponent} from "./header-component/header.component";
-import {HeaderGroupComponent} from "./header-group-component/header-group.component";
+import { RichGridComponent } from "./rich-grid-example/rich-grid.component";
+import { DateComponent } from "./date-component/date.component";
+import { HeaderComponent } from "./header-component/header.component";
+import { HeaderGroupComponent } from "./header-group-component/header-group.component";
+import { RendererComponent } from './renderer-component/renderer.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import {HeaderGroupComponent} from "./header-group-component/header-group.compon
             [
                 DateComponent,
                 HeaderComponent,
-                HeaderGroupComponent
+                HeaderGroupComponent,
+                RendererComponent
             ]
         )
     ],
@@ -28,7 +30,8 @@ import {HeaderGroupComponent} from "./header-group-component/header-group.compon
         RichGridComponent,
         DateComponent,
         HeaderComponent,
-        HeaderGroupComponent
+        HeaderGroupComponent,
+        RendererComponent
     ],
     bootstrap: [AppComponent]
 })
