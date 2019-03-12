@@ -169,6 +169,7 @@ export class RichGridComponent {
 
     private calculateRowCount() {
         if (this.gridOptions.api && this.rowData) {
+            console.log("instances", this.gridOptions.api.getCellEditorInstances()[0].getFrameworkComponentInstance());
             const model = this.gridOptions.api.getModel();
             const totalRows = this.rowData.length;
             const processedRows = model.getRowCount();
