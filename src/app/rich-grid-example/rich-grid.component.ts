@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import {AfterViewChecked, Component, ViewEncapsulation} from "@angular/core";
 import { GridOptions } from "ag-grid-community";
 
 import ProficiencyFilter from '../filters/proficiencyFilter';
@@ -18,7 +18,10 @@ import { RendererComponent } from "../renderer-component/renderer.component";
     styleUrls: ['rich-grid.css', 'proficiency-renderer.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class RichGridComponent {
+export class RichGridComponent implements AfterViewChecked {
+    ngAfterViewChecked(): void {
+        console.log('change detection');
+    }
 
     private gridOptions: GridOptions;
     public showGrid: boolean;
