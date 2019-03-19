@@ -11,6 +11,8 @@ import { DateComponent } from "./date-component/date.component";
 import { HeaderComponent } from "./header-component/header.component";
 import { HeaderGroupComponent } from "./header-group-component/header-group.component";
 import { RendererComponent } from './renderer-component/renderer.component';
+import {ProficiencyFilter} from "./filters/proficiency.component.filter";
+import {SkillFilter} from "./filters/skill.component.filter";
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import { RendererComponent } from './renderer-component/renderer.component';
                 DateComponent,
                 HeaderComponent,
                 HeaderGroupComponent,
-                RendererComponent
+                RendererComponent,
+                ProficiencyFilter,
+                SkillFilter
             ]
         )
     ],
@@ -31,7 +35,9 @@ import { RendererComponent } from './renderer-component/renderer.component';
         DateComponent,
         HeaderComponent,
         HeaderGroupComponent,
-        RendererComponent
+        RendererComponent,
+        ProficiencyFilter,
+        SkillFilter
     ],
     bootstrap: [AppComponent]
 })

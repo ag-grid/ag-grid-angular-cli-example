@@ -1,9 +1,8 @@
-<div style="width: 800px; margin-left: 10px">
+<div style="width: 900px; margin-left: 10px">
     <h1>Rich Grid Example</h1>
     <div style="padding: 4px;">
         <div style="float: right;">
-            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilterInput"
-                   placeholder="Type text to filter..."/>
+            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilterInput" placeholder="Type text to filter..." style="margin-right: 10px"/>
             <button [disabled]="!showGrid" (click)="showGrid=false">Destroy Grid</button>
             <button [disabled]="showGrid" (click)="showGrid=true">Create Grid</button>
         </div>
@@ -12,20 +11,16 @@
             {{rowCount}}
         </div>
     </div>
-    <div style="clear: both;"></div>
+    <div style="margin-top: 10px;clear: both;"></div>
 
     <div *ngIf="showGrid">
-
-        <!-- Because we are using the Angular ID (ie #ag-grid marker), we have to have all the items that use
-             that marker inside the same ng-if as the grid -->
-
         <div style="padding: 4px;" class="toolbar">
             <span>
                 Grid API:
                 <button (click)="gridOptions.api.selectAll()">Select All</button>
                 <button (click)="gridOptions.api.deselectAll()">Clear Selection</button>
             </span>
-            <span style="margin-left: 20px;">
+            <span style="margin-left: 20px; float: right">
                 Column API:
                 <button (click)="gridOptions.columnApi.setColumnVisible('country', false)">Hide Country Column</button>
                 <button (click)="gridOptions.columnApi.setColumnVisible('country', true)">Show Country Column</button>
@@ -51,27 +46,11 @@
                          suppressRowClickSelection
                          rowSelection="multiple"
 
+                         (gridReady)="onReady($event)"
                          (modelUpdated)="onModelUpdated()"
                          (cellClicked)="onCellClicked($event)"
                          (cellDoubleClicked)="onCellDoubleClicked($event)"
-                         (cellContextMenu)="onCellContextMenu($event)"
-                         (cellValueChanged)="onCellValueChanged($event)"
-                         (cellFocused)="onCellFocused($event)"
-                         (rowSelected)="onRowSelected($event)"
-                         (selectionChanged)="onSelectionChanged()"
-                         (filterModified)="onFilterModified()"
-                         (virtualRowRemoved)="onVirtualRowRemoved($event)"
-                         (rowClicked)="onRowClicked($event)"
-                         (gridReady)="onReady($event)"
-
-                         (columnEverythingChanged)="onColumnEvent($event)"
-                         (columnRowGroupChanged)="onColumnEvent($event)"
-                         (columnValueChanged)="onColumnEvent($event)"
-                         (columnMoved)="onColumnEvent($event)"
-                         (columnVisible)="onColumnEvent($event)"
-                         (columnGroupOpened)="onColumnEvent($event)"
-                         (columnResized)="onColumnEvent($event)"
-                         (columnPinnedCountChanged)="onColumnEvent($event)">
+                         (cellContextMenu)="onCellContextMenu($event)">
         </ag-grid-angular>
     </div>
 

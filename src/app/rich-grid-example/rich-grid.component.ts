@@ -1,16 +1,16 @@
-import {AfterViewChecked, Component, ViewEncapsulation} from "@angular/core";
-import { GridOptions } from "ag-grid-community";
+import {Component, ViewEncapsulation} from "@angular/core";
+import {GridOptions} from "ag-grid-community";
 
-import ProficiencyFilter from '../filters/proficiencyFilter';
-import SkillFilter from '../filters/skillFilter';
+import {ProficiencyFilter} from '../filters/proficiency.component.filter';
+import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
 // only import this if you are using the ag-Grid-Enterprise
 import 'ag-grid-enterprise';
 
-import { HeaderGroupComponent } from "../header-group-component/header-group.component";
-import { DateComponent } from "../date-component/date.component";
-import { HeaderComponent } from "../header-component/header.component";
-import { RendererComponent } from "../renderer-component/renderer.component";
+import {HeaderGroupComponent} from "../header-group-component/header-group.component";
+import {DateComponent} from "../date-component/date.component";
+import {HeaderComponent} from "../header-component/header.component";
+import {RendererComponent} from "../renderer-component/renderer.component";
 
 @Component({
     selector: 'rich-grid',
@@ -18,16 +18,14 @@ import { RendererComponent } from "../renderer-component/renderer.component";
     styleUrls: ['rich-grid.css', 'proficiency-renderer.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class RichGridComponent implements AfterViewChecked {
-    ngAfterViewChecked(): void {
-        console.log('change detection');
-    }
-
+export class RichGridComponent {
     private gridOptions: GridOptions;
     public showGrid: boolean;
     public rowData: any[];
-    private columnDefs: any[];
+    public columnDefs: any[];
     public rowCount: string;
+
+    public sideBar: false;
 
     constructor() {
         this.showGrid = true;
@@ -46,7 +44,9 @@ export class RichGridComponent implements AfterViewChecked {
                 customHeaderComponent: HeaderComponent,
                 dateComponent: DateComponent,
                 headerGroupComponent: HeaderGroupComponent,
-                rendererComponent: RendererComponent
+                rendererComponent: RendererComponent,
+                proficiencyFilter: ProficiencyFilter,
+                skillFilter: SkillFilter
             }
         };
         this.createRowData();
@@ -74,8 +74,7 @@ export class RichGridComponent implements AfterViewChecked {
                 country: countryData.country,
                 continent: countryData.continent,
                 language: countryData.language,
-                mobile: createRandomPhoneNumber(),
-                landline: createRandomPhoneNumber()
+                mobile: createRandomPhoneNumber()
             });
         }
 
@@ -110,7 +109,7 @@ export class RichGridComponent implements AfterViewChecked {
                             cellRenderer: countryCellRenderer,
                             cellHeight: 20
                         },
-                        columnGroupShow: 'open'
+                        columnGroupShow: 'show'
                     },
                     {
                         headerName: "DOB",
@@ -122,8 +121,9 @@ export class RichGridComponent implements AfterViewChecked {
                                 pad(params.value.getMonth() + 1, 2) + '/' +
                                 params.value.getFullYear();
                         },
+                        menuTabs: ['filterMenuTab'],
                         filter: 'agDateColumnFilter',
-                        columnGroupShow: 'open'
+                        columnGroupShow: 'show'
                     }
                 ]
             },
@@ -135,13 +135,15 @@ export class RichGridComponent implements AfterViewChecked {
                         width: 125,
                         sortable: false,
                         cellRenderer: skillsCellRenderer,
-                        filter: SkillFilter
+                        menuTabs: ['filterMenuTab'],
+                        filter: 'skillFilter'
                     },
                     {
                         field: "proficiency",
                         width: 120,
                         cellRenderer: percentCellRenderer,
-                        filter: ProficiencyFilter
+                        menuTabs: ['filterMenuTab'],
+                        filter: 'proficiencyFilter'
                     },
                 ]
             },
@@ -151,12 +153,6 @@ export class RichGridComponent implements AfterViewChecked {
                     {
                         field: "mobile",
                         cellRendererFramework: RendererComponent,
-                        width: 150,
-                        filter: 'agTextColumnFilter'
-                    },
-                    {
-                        headerName: "Land-line",
-                        field: "landline",
                         width: 150,
                         filter: 'agTextColumnFilter'
                     },
@@ -193,10 +189,6 @@ export class RichGridComponent implements AfterViewChecked {
         console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellValueChanged($event) {
-        console.log('onCellValueChanged: ' + $event.oldValue + ' to ' + $event.newValue);
-    }
-
     private onCellDoubleClicked($event) {
         console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
@@ -205,75 +197,24 @@ export class RichGridComponent implements AfterViewChecked {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellFocused($event) {
-        console.log('onCellFocused: (' + $event.rowIndex + ',' + $event.colIndex + ')');
-    }
-
-    private onRowSelected($event) {
-        // taking out, as when we 'select all', it prints to much to the console!!
-        // console.log('onRowSelected: ' + $event.node.data.name);
-    }
-
-    private onSelectionChanged() {
-        console.log('selectionChanged');
-    }
-
-    private onBeforeFilterChanged() {
-        console.log('beforeFilterChanged');
-    }
-
-    private onAfterFilterChanged() {
-        console.log('afterFilterChanged');
-    }
-
-    private onFilterModified() {
-        console.log('onFilterModified');
-    }
-
-    private onBeforeSortChanged() {
-        console.log('onBeforeSortChanged');
-    }
-
-    private onAfterSortChanged() {
-        console.log('onAfterSortChanged');
-    }
-
-    private onVirtualRowRemoved($event) {
-        // because this event gets fired LOTS of times, we don't print it to the
-        // console. if you want to see it, just uncomment out this line
-        // console.log('onVirtualRowRemoved: ' + $event.rowIndex);
-    }
-
-    private onRowClicked($event) {
-        console.log('onRowClicked: ' + $event.node.data.name);
-    }
-
     public onQuickFilterChanged($event) {
         this.gridOptions.api.setQuickFilter($event.target.value);
     }
-
-    // here we use one generic event to handle all the column type events.
-    // the method just prints the event name
-    private onColumnEvent($event) {
-        console.log('onColumnEvent: ' + $event);
-    }
-
 }
 
 function skillsCellRenderer(params) {
     const data = params.data;
     const skills = [];
-    RefData.IT_SKILLS.forEach(function(skill) {
+    RefData.IT_SKILLS.forEach(function (skill) {
         if (data && data.skills && data.skills[skill]) {
-            skills.push('<img src="images/skills/' + skill + '.png" width="16px" title="' + skill + '" />');
+            skills.push(`<img src="images/skills/${skill}.png" width="16px" title="${skill}" />`);
         }
     });
     return skills.join(' ');
 }
 
 function countryCellRenderer(params) {
-    const flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/" + RefData.COUNTRY_CODES[params.value] + ".png'>";
-    return flag + " " + params.value;
+    return `<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/${RefData.COUNTRY_CODES[params.value]}.png'>${params.value}`;
 }
 
 function createRandomPhoneNumber() {
