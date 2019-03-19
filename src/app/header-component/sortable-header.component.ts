@@ -7,10 +7,10 @@ interface MyParams extends IHeaderParams {
 }
 
 @Component({
-    templateUrl: 'header.component.html',
-    styleUrls: ['header.component.css']
+    templateUrl: 'sortable-header.component.html',
+    styleUrls: ['sortable-header.component.css']
 })
-export class HeaderComponent implements OnDestroy, IHeaderAngularComp {
+export class SortableHeaderComponent implements OnDestroy, IHeaderAngularComp {
     public params: MyParams;
     public sorted: string;
     private elementRef: ElementRef;

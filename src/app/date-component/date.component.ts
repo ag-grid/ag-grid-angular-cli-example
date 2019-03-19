@@ -28,6 +28,9 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
         this.mm = '';
         this.yyyy = '';
         this.date = null;
+
+
+        console.log("resetting date:", this.date);
         this.params.onDateChanged();
     }
 
@@ -37,10 +40,13 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
             on === 'mm' ? newValue : this.mm,
             on === 'yyyy' ? newValue : this.yyyy
         );
+
+        console.log("date changed:", this.date);
         this.params.onDateChanged();
     }
 
     getDate(): Date {
+        console.log("get date", this.date);
         return this.date;
     }
 
@@ -50,6 +56,8 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
             this.mm = (date.getMonth() + 1) + '';
             this.yyyy = date.getFullYear() + '';
             this.date = date;
+
+            console.log("set date", this.date);
             this.params.onDateChanged();
         }
     }

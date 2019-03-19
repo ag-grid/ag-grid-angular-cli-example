@@ -107,4 +107,8 @@ export class SkillFilter implements IFilterAngularComp {
     public isFilterActive() {
         return true;
     };
+
+    helloFromSkillsFilter() {
+        alert("Hello From The Skills Filter!");
+    }
 }

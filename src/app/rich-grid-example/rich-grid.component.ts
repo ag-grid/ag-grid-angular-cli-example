@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {GridOptions} from "ag-grid-community";
+import {ColumnApi, GridApi, GridOptions} from "ag-grid-community";
 
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';
@@ -9,7 +9,7 @@ import 'ag-grid-enterprise';
 
 import {HeaderGroupComponent} from "../header-group-component/header-group.component";
 import {DateComponent} from "../date-component/date.component";
-import {HeaderComponent} from "../header-component/header.component";
+import {SortableHeaderComponent} from "../header-component/sortable-header.component";
 import {RendererComponent} from "../renderer-component/renderer.component";
 
 @Component({
@@ -20,35 +20,35 @@ import {RendererComponent} from "../renderer-component/renderer.component";
 })
 export class RichGridComponent {
     private gridOptions: GridOptions;
-    public showGrid: boolean;
     public rowData: any[];
     public columnDefs: any[];
     public rowCount: string;
 
+    public defaultColDef: any;
+    public frameworkComponents: any;
     public sideBar: false;
 
+    private api: GridApi;
+    private columnApi: ColumnApi;
+
     constructor() {
-        this.showGrid = true;
-        this.gridOptions = <GridOptions>{
-            dateComponent: 'dateComponent',
-            defaultColDef: {
-                resizable: true,
-                sortable: true,
-                filter: true,
-                headerComponent: 'customHeaderComponent',
-                headerComponentParams: {
-                    menuIcon: 'fa-bars'
-                }
-            },
-            frameworkComponents: {
-                customHeaderComponent: HeaderComponent,
-                dateComponent: DateComponent,
-                headerGroupComponent: HeaderGroupComponent,
-                rendererComponent: RendererComponent,
-                proficiencyFilter: ProficiencyFilter,
-                skillFilter: SkillFilter
+        this.defaultColDef = {
+            resizable: true,
+            sortable: true,
+            filter: true,
+            headerComponent: 'sortableHeaderComponent',
+            headerComponentParams: {
+                menuIcon: 'fa-bars'
             }
         };
+
+        this.frameworkComponents = {
+            sortableHeaderComponent: SortableHeaderComponent,
+            dateComponent: DateComponent,
+            headerGroupComponent: HeaderGroupComponent,
+            rendererComponent: RendererComponent
+        };
+
         this.createRowData();
         this.createColumnDefs();
     }
@@ -87,6 +87,7 @@ export class RichGridComponent {
                 headerName: '#',
                 width: 30,
                 checkboxSelection: true,
+                filter: false,
                 sortable: false,
                 suppressMenu: true,
                 pinned: true
@@ -98,7 +99,9 @@ export class RichGridComponent {
                     {
                         field: "name",
                         width: 150,
-                        pinned: true
+                        pinned: true,
+                        enableRowGroup: true,
+                        enablePivot: true
                     },
                     {
                         field: "country",
@@ -109,12 +112,14 @@ export class RichGridComponent {
                             cellRenderer: countryCellRenderer,
                             cellHeight: 20
                         },
+                        enableRowGroup: true,
+                        enablePivot: true,
                         columnGroupShow: 'show'
                     },
                     {
                         headerName: "DOB",
                         field: "dob",
-                        width: 120,
+                        width: 195,
                         pinned: true,
                         cellRenderer: (params) => {
                             return pad(params.value.getDate(), 2) + '/' +
@@ -123,7 +128,7 @@ export class RichGridComponent {
                         },
                         menuTabs: ['filterMenuTab'],
                         filter: 'agDateColumnFilter',
-                        columnGroupShow: 'show'
+                        columnGroupShow: 'open'
                     }
                 ]
             },
@@ -131,19 +136,21 @@ export class RichGridComponent {
                 headerName: 'IT Skills',
                 children: [
                     {
-                        headerName: "Skills",
+                        field: "skills",
                         width: 125,
                         sortable: false,
                         cellRenderer: skillsCellRenderer,
                         menuTabs: ['filterMenuTab'],
-                        filter: 'skillFilter'
+                        filterFramework: SkillFilter,
+                        enableRowGroup: true,
+                        enablePivot: true
                     },
                     {
                         field: "proficiency",
-                        width: 120,
+                        width: 160,
                         cellRenderer: percentCellRenderer,
                         menuTabs: ['filterMenuTab'],
-                        filter: 'proficiencyFilter'
+                        filterFramework: ProficiencyFilter
                     },
                 ]
             },
@@ -167,8 +174,8 @@ export class RichGridComponent {
     }
 
     private calculateRowCount() {
-        if (this.gridOptions.api && this.rowData) {
-            const model = this.gridOptions.api.getModel();
+        if (this.api && this.rowData) {
+            const model = this.api.getModel();
             const totalRows = this.rowData.length;
             const processedRows = model.getRowCount();
             this.rowCount = processedRows.toLocaleString() + ' / ' + totalRows.toLocaleString();
@@ -180,8 +187,12 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    public onReady() {
-        console.log('onReady');
+    public onGridReady(params) {
+        console.log('onGridReady');
+
+        this.api = params.api;
+        this.columnApi = params.columnApi;
+
         this.calculateRowCount();
     }
 
@@ -198,8 +209,24 @@ export class RichGridComponent {
     }
 
     public onQuickFilterChanged($event) {
-        this.gridOptions.api.setQuickFilter($event.target.value);
+        this.api.setQuickFilter($event.target.value);
     }
+
+    public invokeSkillsFilterMethod() {
+        let skillsFilter = this.api.getFilterInstance('skills');
+        let componentInstance = skillsFilter.getFrameworkComponentInstance();
+        componentInstance.helloFromSkillsFilter();
+    }
+
+    public dobFilter() {
+        let dateFilterComponent = this.api.getFilterInstance('dob');
+        dateFilterComponent.setModel({
+            type: 'equals',
+            dateFrom: '2000-01-01'
+        });
+
+        this.api.onFilterChanged();
+    };
 }
 
 function skillsCellRenderer(params) {
