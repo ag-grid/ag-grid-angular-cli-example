@@ -24,7 +24,7 @@ import {IFilterAngularComp} from "ag-grid-angular/src/interfaces";
     `
 })
 export class SkillFilter implements IFilterAngularComp {
-    private skills = [
+    public skills = [
         {
             name: 'Android',
             get filename() {

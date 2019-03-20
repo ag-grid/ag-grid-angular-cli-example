@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ColumnApi, GridApi, GridOptions} from "ag-grid-community";
+import {ColumnApi, GridApi} from "ag-grid-community";
 
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';
@@ -19,7 +19,6 @@ import {RendererComponent} from "../renderer-component/renderer.component";
     encapsulation: ViewEncapsulation.None
 })
 export class RichGridComponent {
-    private gridOptions: GridOptions;
     public rowData: any[];
     public columnDefs: any[];
     public rowCount: string;
@@ -28,8 +27,8 @@ export class RichGridComponent {
     public frameworkComponents: any;
     public sideBar: false;
 
-    private api: GridApi;
-    private columnApi: ColumnApi;
+    public api: GridApi;
+    public columnApi: ColumnApi;
 
     constructor() {
         this.defaultColDef = {
@@ -53,7 +52,7 @@ export class RichGridComponent {
         this.createColumnDefs();
     }
 
-    private createRowData() {
+    public createRowData() {
         const rowData: any[] = [];
 
         for (let i = 0; i < 200; i++) {
@@ -182,7 +181,7 @@ export class RichGridComponent {
         }
     }
 
-    private onModelUpdated() {
+    public onModelUpdated() {
         console.log('onModelUpdated');
         this.calculateRowCount();
     }
@@ -196,15 +195,15 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    private onCellClicked($event) {
+    public onCellClicked($event) {
         console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellDoubleClicked($event) {
+    public onCellDoubleClicked($event) {
         console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellContextMenu($event) {
+    public onCellContextMenu($event) {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
