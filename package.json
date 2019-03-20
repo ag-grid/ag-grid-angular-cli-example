@@ -10,7 +10,7 @@
   "author": "Sean Landsman <sean@thelandsmans.com>",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve --port 8081",
+    "start": "ng serve --port 8080",
     "build": "ng build --aot --prod",
     "lint": "tslint \"src/**/*.ts\"",
     "test:local": "ng test",
