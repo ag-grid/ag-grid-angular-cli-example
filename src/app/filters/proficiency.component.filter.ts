@@ -19,7 +19,7 @@ import {IFilterAngularComp} from "ag-grid-angular/src/interfaces";
     `
 })
 export class ProficiencyFilter implements OnDestroy, IFilterAngularComp {
-    private PROFICIENCIES = [
+    public PROFICIENCIES = [
         {
             name: 'No Filter',
             threshold: 0
