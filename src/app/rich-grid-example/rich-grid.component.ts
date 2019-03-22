@@ -1,16 +1,16 @@
-import { Component, ViewEncapsulation } from "@angular/core";
-import { GridOptions } from "ag-grid-community";
+import {Component, ViewEncapsulation} from "@angular/core";
+import {ColumnApi, GridApi} from "ag-grid-community";
 
-import ProficiencyFilter from '../filters/proficiencyFilter';
-import SkillFilter from '../filters/skillFilter';
+import {ProficiencyFilter} from '../filters/proficiency.component.filter';
+import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
 // only import this if you are using the ag-Grid-Enterprise
 import 'ag-grid-enterprise';
 
-import { HeaderGroupComponent } from "../header-group-component/header-group.component";
-import { DateComponent } from "../date-component/date.component";
-import { HeaderComponent } from "../header-component/header.component";
-import { RendererComponent } from "../renderer-component/renderer.component";
+import {HeaderGroupComponent} from "../header-group-component/header-group.component";
+import {DateComponent} from "../date-component/date.component";
+import {SortableHeaderComponent} from "../header-component/sortable-header.component";
+import {RendererComponent} from "../renderer-component/renderer.component";
 
 @Component({
     selector: 'rich-grid',
@@ -19,38 +19,40 @@ import { RendererComponent } from "../renderer-component/renderer.component";
     encapsulation: ViewEncapsulation.None
 })
 export class RichGridComponent {
-
-    private gridOptions: GridOptions;
-    public showGrid: boolean;
     public rowData: any[];
-    private columnDefs: any[];
+    public columnDefs: any[];
     public rowCount: string;
 
+    public defaultColDef: any;
+    public frameworkComponents: any;
+    public sideBar: false;
+
+    public api: GridApi;
+    public columnApi: ColumnApi;
+
     constructor() {
-        this.showGrid = true;
-        this.gridOptions = <GridOptions>{
-            dateComponent: 'dateComponent',
-            defaultColDef: {
-                resizable: true,
-                sortable: true,
-                filter: true,
-                headerComponent: 'customHeaderComponent',
-                headerComponentParams: {
-                    menuIcon: 'fa-bars'
-                }
-            },
-            frameworkComponents: {
-                customHeaderComponent: HeaderComponent,
-                dateComponent: DateComponent,
-                headerGroupComponent: HeaderGroupComponent,
-                rendererComponent: RendererComponent
+        this.defaultColDef = {
+            resizable: true,
+            sortable: true,
+            filter: true,
+            headerComponent: 'sortableHeaderComponent',
+            headerComponentParams: {
+                menuIcon: 'fa-bars'
             }
         };
+
+        this.frameworkComponents = {
+            sortableHeaderComponent: SortableHeaderComponent,
+            dateComponent: DateComponent,
+            headerGroupComponent: HeaderGroupComponent,
+            rendererComponent: RendererComponent
+        };
+
         this.createRowData();
         this.createColumnDefs();
     }
 
-    private createRowData() {
+    public createRowData() {
         const rowData: any[] = [];
 
         for (let i = 0; i < 200; i++) {
@@ -71,8 +73,7 @@ export class RichGridComponent {
                 country: countryData.country,
                 continent: countryData.continent,
                 language: countryData.language,
-                mobile: createRandomPhoneNumber(),
-                landline: createRandomPhoneNumber()
+                mobile: createRandomPhoneNumber()
             });
         }
 
@@ -85,6 +86,7 @@ export class RichGridComponent {
                 headerName: '#',
                 width: 30,
                 checkboxSelection: true,
+                filter: false,
                 sortable: false,
                 suppressMenu: true,
                 pinned: true
@@ -96,7 +98,9 @@ export class RichGridComponent {
                     {
                         field: "name",
                         width: 150,
-                        pinned: true
+                        pinned: true,
+                        enableRowGroup: true,
+                        enablePivot: true
                     },
                     {
                         field: "country",
@@ -107,18 +111,21 @@ export class RichGridComponent {
                             cellRenderer: countryCellRenderer,
                             cellHeight: 20
                         },
-                        columnGroupShow: 'open'
+                        enableRowGroup: true,
+                        enablePivot: true,
+                        columnGroupShow: 'show'
                     },
                     {
                         headerName: "DOB",
                         field: "dob",
-                        width: 120,
+                        width: 195,
                         pinned: true,
                         cellRenderer: (params) => {
                             return pad(params.value.getDate(), 2) + '/' +
                                 pad(params.value.getMonth() + 1, 2) + '/' +
                                 params.value.getFullYear();
                         },
+                        menuTabs: ['filterMenuTab'],
                         filter: 'agDateColumnFilter',
                         columnGroupShow: 'open'
                     }
@@ -128,17 +135,21 @@ export class RichGridComponent {
                 headerName: 'IT Skills',
                 children: [
                     {
-                        headerName: "Skills",
+                        field: "skills",
                         width: 125,
                         sortable: false,
                         cellRenderer: skillsCellRenderer,
-                        filter: SkillFilter
+                        menuTabs: ['filterMenuTab'],
+                        filterFramework: SkillFilter,
+                        enableRowGroup: true,
+                        enablePivot: true
                     },
                     {
                         field: "proficiency",
-                        width: 120,
+                        width: 160,
                         cellRenderer: percentCellRenderer,
-                        filter: ProficiencyFilter
+                        menuTabs: ['filterMenuTab'],
+                        filterFramework: ProficiencyFilter
                     },
                 ]
             },
@@ -148,12 +159,6 @@ export class RichGridComponent {
                     {
                         field: "mobile",
                         cellRendererFramework: RendererComponent,
-                        width: 150,
-                        filter: 'agTextColumnFilter'
-                    },
-                    {
-                        headerName: "Land-line",
-                        field: "landline",
                         width: 150,
                         filter: 'agTextColumnFilter'
                     },
@@ -168,109 +173,74 @@ export class RichGridComponent {
     }
 
     private calculateRowCount() {
-        if (this.gridOptions.api && this.rowData) {
-            const model = this.gridOptions.api.getModel();
+        if (this.api && this.rowData) {
+            const model = this.api.getModel();
             const totalRows = this.rowData.length;
             const processedRows = model.getRowCount();
             this.rowCount = processedRows.toLocaleString() + ' / ' + totalRows.toLocaleString();
         }
     }
 
-    private onModelUpdated() {
+    public onModelUpdated() {
         console.log('onModelUpdated');
         this.calculateRowCount();
     }
 
-    public onReady() {
-        console.log('onReady');
+    public onGridReady(params) {
+        console.log('onGridReady');
+
+        this.api = params.api;
+        this.columnApi = params.columnApi;
+
         this.calculateRowCount();
     }
 
-    private onCellClicked($event) {
+    public onCellClicked($event) {
         console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellValueChanged($event) {
-        console.log('onCellValueChanged: ' + $event.oldValue + ' to ' + $event.newValue);
-    }
-
-    private onCellDoubleClicked($event) {
+    public onCellDoubleClicked($event) {
         console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellContextMenu($event) {
+    public onCellContextMenu($event) {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    private onCellFocused($event) {
-        console.log('onCellFocused: (' + $event.rowIndex + ',' + $event.colIndex + ')');
-    }
-
-    private onRowSelected($event) {
-        // taking out, as when we 'select all', it prints to much to the console!!
-        // console.log('onRowSelected: ' + $event.node.data.name);
-    }
-
-    private onSelectionChanged() {
-        console.log('selectionChanged');
-    }
-
-    private onBeforeFilterChanged() {
-        console.log('beforeFilterChanged');
-    }
-
-    private onAfterFilterChanged() {
-        console.log('afterFilterChanged');
-    }
-
-    private onFilterModified() {
-        console.log('onFilterModified');
-    }
-
-    private onBeforeSortChanged() {
-        console.log('onBeforeSortChanged');
-    }
-
-    private onAfterSortChanged() {
-        console.log('onAfterSortChanged');
-    }
-
-    private onVirtualRowRemoved($event) {
-        // because this event gets fired LOTS of times, we don't print it to the
-        // console. if you want to see it, just uncomment out this line
-        // console.log('onVirtualRowRemoved: ' + $event.rowIndex);
-    }
-
-    private onRowClicked($event) {
-        console.log('onRowClicked: ' + $event.node.data.name);
-    }
-
     public onQuickFilterChanged($event) {
-        this.gridOptions.api.setQuickFilter($event.target.value);
+        this.api.setQuickFilter($event.target.value);
     }
 
-    // here we use one generic event to handle all the column type events.
-    // the method just prints the event name
-    private onColumnEvent($event) {
-        console.log('onColumnEvent: ' + $event);
+    public invokeSkillsFilterMethod() {
+        let skillsFilter = this.api.getFilterInstance('skills');
+        let componentInstance = skillsFilter.getFrameworkComponentInstance();
+        componentInstance.helloFromSkillsFilter();
     }
 
+    public dobFilter() {
+        let dateFilterComponent = this.api.getFilterInstance('dob');
+        dateFilterComponent.setModel({
+            type: 'equals',
+            dateFrom: '2000-01-01'
+        });
+
+        this.api.onFilterChanged();
+    };
 }
 
 function skillsCellRenderer(params) {
     const data = params.data;
     const skills = [];
-    RefData.IT_SKILLS.forEach(function(skill) {
+    RefData.IT_SKILLS.forEach(function (skill) {
         if (data && data.skills && data.skills[skill]) {
-            skills.push('<img src="images/skills/' + skill + '.png" width="16px" title="' + skill + '" />');
+            skills.push(`<img src="images/skills/${skill}.png" width="16px" title="${skill}" />`);
         }
     });
     return skills.join(' ');
 }
 
 function countryCellRenderer(params) {
-    const flag = "<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/" + RefData.COUNTRY_CODES[params.value] + ".png'>";
-    return flag + " " + params.value;
+    return `<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/${RefData.COUNTRY_CODES[params.value]}.png'>${params.value}`;
 }
 
 function createRandomPhoneNumber() {

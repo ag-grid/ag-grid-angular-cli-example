@@ -28,6 +28,8 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
         this.mm = '';
         this.yyyy = '';
         this.date = null;
+
+
         this.params.onDateChanged();
     }
 
@@ -37,6 +39,7 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
             on === 'mm' ? newValue : this.mm,
             on === 'yyyy' ? newValue : this.yyyy
         );
+
         this.params.onDateChanged();
     }
 

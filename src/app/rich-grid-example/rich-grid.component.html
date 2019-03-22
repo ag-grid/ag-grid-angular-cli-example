@@ -1,78 +1,62 @@
-<div style="width: 800px; margin-left: 10px">
+<div style="width: 900px; margin-left: 10px">
     <h1>Rich Grid Example</h1>
-    <div style="padding: 4px;">
-        <div style="float: right;">
-            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilterInput"
-                   placeholder="Type text to filter..."/>
-            <button [disabled]="!showGrid" (click)="showGrid=false">Destroy Grid</button>
-            <button [disabled]="showGrid" (click)="showGrid=true">Create Grid</button>
-        </div>
-        <div>
-            <b>Employees Skills and Contact Details</b>
-            {{rowCount}}
+    <div style="display: inline-block; width: 100%">
+        <div style="float: left">
+            <b>Employees Skills and Contact Details: </b>{{rowCount}}
         </div>
     </div>
-    <div style="clear: both;"></div>
-
-    <div *ngIf="showGrid">
-
-        <!-- Because we are using the Angular ID (ie #ag-grid marker), we have to have all the items that use
-             that marker inside the same ng-if as the grid -->
-
-        <div style="padding: 4px;" class="toolbar">
+    <div style="margin-top: 10px">
+        <div>
             <span>
                 Grid API:
-                <button (click)="gridOptions.api.selectAll()">Select All</button>
-                <button (click)="gridOptions.api.deselectAll()">Clear Selection</button>
+                <button (click)="this.api.selectAll()" class="btn btn-primary">Select All</button>
+                <button (click)="this.api.deselectAll()" class="btn btn-primary">Clear Selection</button>
             </span>
-            <span style="margin-left: 20px;">
+            <span style="float: right">
                 Column API:
-                <button (click)="gridOptions.columnApi.setColumnVisible('country', false)">Hide Country Column</button>
-                <button (click)="gridOptions.columnApi.setColumnVisible('country', true)">Show Country Column</button>
+                <button (click)="this.columnApi.setColumnVisible('country', false)" class="btn btn-primary">Hide Country Column</button>
+                <button (click)="this.columnApi.setColumnVisible('country', true)" class="btn btn-primary">Show Country Column</button>
             </span>
         </div>
-        <div style="clear: both;"></div>
-        <div style="padding: 4px;" class="toolbar">
-            <label>
-                <input type="checkbox" (change)="sideBar=$event.target.checked"/>
-                Show Side Bar
-            </label>
-            <button (click)="createRowData()">Refresh Data</button>
-        </div>
-        <div style="clear: both;"></div>
-
-        <ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham"
-
-                         [gridOptions]="gridOptions"
-                         [columnDefs]="columnDefs"
-                         [sideBar]="sideBar"
-                         [rowData]="rowData"
-
-                         suppressRowClickSelection
-                         rowSelection="multiple"
-
-                         (modelUpdated)="onModelUpdated()"
-                         (cellClicked)="onCellClicked($event)"
-                         (cellDoubleClicked)="onCellDoubleClicked($event)"
-                         (cellContextMenu)="onCellContextMenu($event)"
-                         (cellValueChanged)="onCellValueChanged($event)"
-                         (cellFocused)="onCellFocused($event)"
-                         (rowSelected)="onRowSelected($event)"
-                         (selectionChanged)="onSelectionChanged()"
-                         (filterModified)="onFilterModified()"
-                         (virtualRowRemoved)="onVirtualRowRemoved($event)"
-                         (rowClicked)="onRowClicked($event)"
-                         (gridReady)="onReady($event)"
-
-                         (columnEverythingChanged)="onColumnEvent($event)"
-                         (columnRowGroupChanged)="onColumnEvent($event)"
-                         (columnValueChanged)="onColumnEvent($event)"
-                         (columnMoved)="onColumnEvent($event)"
-                         (columnVisible)="onColumnEvent($event)"
-                         (columnGroupOpened)="onColumnEvent($event)"
-                         (columnResized)="onColumnEvent($event)"
-                         (columnPinnedCountChanged)="onColumnEvent($event)">
-        </ag-grid-angular>
     </div>
+    <div style="display: inline-block; width: 100%; margin-top: 10px; margin-bottom: 10px">
+        <div style="float: left">
+            <button (click)="this.createRowData()" class="btn btn-primary">Refresh Data</button>
+        </div>
+        <div style="float: right">
+            Filter API:
+            <button (click)="this.invokeSkillsFilterMethod()" class="btn btn-primary">Invoke Skills Filter Method
+            </button>
+            <button (click)="this.dobFilter()" class="btn btn-primary">DOB equals to 01/01/2000</button>
+        </div>
+    </div>
+    <div style="display: inline-block; width: 100%; margin-top: 10px; margin-bottom: 10px">
+        <div style="float: left">
+            <label for="sideBarToggle">Show Side Bar&nbsp;</label>
+            <input type="checkbox" id="sideBarToggle" (change)="sideBar=$event.target.checked" style="margin-right: 5px"/>
+        </div>
+        <div style="float: right; margin-left: 20px">
+            <label for="quickFilter">Quick Filter:&nbsp;</label>
+            <input (keyup)="onQuickFilterChanged($event)" type="text" id="quickFilter"
+                   placeholder="Type text to filter..." style="margin-right: 10px"/>
+        </div>
+    </div>
+    <ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham"
+                     [columnDefs]="columnDefs"
+                     [sideBar]="sideBar"
+                     [rowData]="rowData"
 
+                     [defaultColDef]="defaultColDef"
+                     [dateComponent]="'dateComponent'"
+                     [frameworkComponents]="frameworkComponents"
+
+                     suppressRowClickSelection
+                     rowSelection="multiple"
+
+                     (gridReady)="onGridReady($event)"
+                     (modelUpdated)="onModelUpdated()"
+                     (cellClicked)="onCellClicked($event)"
+                     (cellDoubleClicked)="onCellDoubleClicked($event)"
+                     (cellContextMenu)="onCellContextMenu($event)">
+    </ag-grid-angular>
 </div>
