@@ -68,7 +68,6 @@ export class SkillFilter implements IFilterAngularComp {
     ];
 
     private params: IFilterParams;
-    private model: any;
 
     agInit(params: IFilterParams): void {
         this.params = params;
@@ -87,7 +86,6 @@ export class SkillFilter implements IFilterAngularComp {
     }
 
     setModel(model) {
-        this.model = model;
         for (const skill of this.skills) {
             skill.selected = model && model[skill.field] ? model[skill.field].selected : false;
         }
