@@ -13,7 +13,7 @@
     "start": "ng serve --port 8080",
     "build": "ng build --aot --prod",
     "lint": "tslint \"src/**/*.ts\"",
-    "test:local": "ng test",
+    "test": "ng test --watch false --browsers ChromeHeadless",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
