@@ -32,6 +32,8 @@ export class EditorComponent implements ICellEditorAngularComp {
         this.value = this.params.value;
     }
 
+    // spl this must go!
+
     getGui(): HTMLElement {
         return this.input;
     }
