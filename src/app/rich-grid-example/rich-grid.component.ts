@@ -30,6 +30,11 @@ export class RichGridComponent {
     public api: GridApi;
     public columnApi: ColumnApi;
 
+    cd() {
+
+        console.log('run cd');
+    }
+
     constructor() {
         this.defaultColDef = {
             resizable: true,
