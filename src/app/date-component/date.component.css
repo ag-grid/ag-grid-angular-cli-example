@@ -3,15 +3,15 @@
 }
 
 .dd {
-    width: 30px
+    width: 30px !important;
 }
 
 .mm {
-    width: 30px
+    width: 30px !important;
 }
 
 .yyyy {
-    width: 60px
+    width: 60px !important;
 }
 
 .reset {
