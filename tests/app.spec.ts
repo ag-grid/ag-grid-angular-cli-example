@@ -25,7 +25,7 @@ export class EditorComponent implements ICellEditorAngularComp {
     private params: any;
     public value: number;
 
-    @ViewChild('input', {read: ViewContainerRef}) public input;
+    @ViewChild('input', {read: ViewContainerRef, static: false}) public input;
 
     agInit(params: any): void {
         this.params = params;
