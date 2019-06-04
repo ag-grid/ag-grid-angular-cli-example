@@ -24,13 +24,15 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
     }
 
     onResetDate() {
+        this.setDateToEmpty();
+        this.params.onDateChanged();
+    }
+
+    setDateToEmpty() {
         this.dd = '';
         this.mm = '';
         this.yyyy = '';
         this.date = null;
-
-
-        this.params.onDateChanged();
     }
 
     onDateChanged(on: string, newValue: string) {
@@ -54,6 +56,8 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
             this.yyyy = date.getFullYear() + '';
             this.date = date;
             this.params.onDateChanged();
+        } else {
+            this.setDateToEmpty();
         }
     }
 
