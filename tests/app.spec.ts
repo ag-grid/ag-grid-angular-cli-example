@@ -1,11 +1,10 @@
 import {Component, ViewChild, ViewContainerRef} from "@angular/core";
-
-// spl to revisit
-import "ag-grid-community/dist/es2015/modules/clientSideRowModelModule"
 import {ColumnApi, GridApi} from "ag-grid-community";
 import {AgGridModule, ICellEditorAngularComp} from "ag-grid-angular";
 import {async, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
+
+import '@ag-community/client-side-row-model'
 
 @Component({
     template: `

@@ -4,6 +4,9 @@ import {ColumnApi, GridApi} from "ag-grid-community";
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
+
+import '@ag-community/client-side-row-model'
+
 // only import this if you are using the ag-Grid-Enterprise
 import 'ag-grid-enterprise';
 
