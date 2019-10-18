@@ -9,7 +9,11 @@ import RefData from '../data/refData';
 // import {Module, AllModules} from "@ag-community/grid-all-modules";
 
 // for enterprise features
-import {Module, AllModules} from "@ag-enterprise/grid-all-modules";
+import {Module, AllModules } from "@ag-enterprise/grid-all-modules";
+
+// set your key here
+// import {LicenseManager} from "@ag-enterprise/grid-all-modules";
+// LicenseManager.setLicenseKey(<your key>);
 
 import {HeaderGroupComponent} from "../header-group-component/header-group.component";
 import {DateComponent} from "../date-component/date.component";
