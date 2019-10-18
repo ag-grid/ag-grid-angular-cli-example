@@ -4,7 +4,7 @@ import {AgGridModule, ICellEditorAngularComp} from "ag-grid-angular";
 import {async, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 
-import '@ag-community/client-side-row-model'
+import {Module, AllModules} from "@ag-community/grid-all-modules";
 
 @Component({
     template: `
@@ -58,6 +58,7 @@ export class EditorComponent implements ICellEditorAngularComp {
             <ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham"
                              [columnDefs]="columnDefs"
                              [rowData]="rowData"
+                             [modules]="modules"
 
                              [stopEditingWhenGridLosesFocus]="false"
 
@@ -68,6 +69,8 @@ export class EditorComponent implements ICellEditorAngularComp {
         </div>`
 })
 class TestHostComponent {
+    modules: Module[] = AllModules;
+
     rowData: any[] = [{name: 'Test Name', number: 42}];
 
     columnDefs: any[] = [

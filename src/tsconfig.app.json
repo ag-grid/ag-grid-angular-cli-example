@@ -18,6 +18,12 @@
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
+      ],
+      "@ag-community/grid-core": [
+        "../node_modules/@ag-community/grid-core"
+      ],
+      "@ag-community/grid-core/*": [
+        "../node_modules/@ag-community/grid-core/*"
       ]
     }
   },
