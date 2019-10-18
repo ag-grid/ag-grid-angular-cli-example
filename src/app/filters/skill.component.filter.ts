@@ -1,4 +1,4 @@
-import {IFilterParams} from "ag-grid-community";
+import {IFilterParams} from "@ag-community/grid-core";
 
 import {Component} from "@angular/core";
 import {IFilterAngularComp} from "ag-grid-angular/src/interfaces";

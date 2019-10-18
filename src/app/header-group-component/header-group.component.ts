@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from "@angular/core";
-import {IHeaderGroupParams} from "ag-grid-community";
+import {IHeaderGroupParams} from "@ag-community/grid-core";
 import {IHeaderGroupAngularComp} from "ag-grid-angular";
 
 @Component({

@@ -1,19 +1,21 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ColumnApi, GridApi} from "ag-grid-community";
+import {ColumnApi, GridApi} from "@ag-community/grid-core";
 
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
 
 import '@ag-community/client-side-row-model'
-
-// only import this if you are using the ag-Grid-Enterprise
-import 'ag-grid-enterprise';
+import '@ag-community/infinite-row-model'
+import '@ag-community/csv-export'
 
 import {HeaderGroupComponent} from "../header-group-component/header-group.component";
 import {DateComponent} from "../date-component/date.component";
 import {SortableHeaderComponent} from "../header-component/sortable-header.component";
 import {RendererComponent} from "../renderer-component/renderer.component";
+
+// only import this if you are using the ag-Grid-Enterprise
+// import 'ag-grid-enterprise';
 
 @Component({
     selector: 'rich-grid',

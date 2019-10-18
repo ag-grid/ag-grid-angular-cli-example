@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnDestroy} from "@angular/core";
-import {IHeaderParams} from "ag-grid-community";
+import {IHeaderParams} from "@ag-community/grid-core";
 import {IHeaderAngularComp} from "ag-grid-angular";
 
 interface MyParams extends IHeaderParams {
