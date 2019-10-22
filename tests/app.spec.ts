@@ -4,7 +4,7 @@ import {AgGridModule, ICellEditorAngularComp} from "ag-grid-angular";
 import {async, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 
-import {Module, AllModules} from "@ag-community/grid-all-modules";
+import {Module, AllCommunityModules} from "@ag-community/grid-all-modules";
 
 @Component({
     template: `
@@ -69,7 +69,7 @@ export class EditorComponent implements ICellEditorAngularComp {
         </div>`
 })
 class TestHostComponent {
-    modules: Module[] = AllModules;
+    modules: Module[] = AllCommunityModules;
 
     rowData: any[] = [{name: 'Test Name', number: 42}];
 

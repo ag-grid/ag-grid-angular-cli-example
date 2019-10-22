@@ -6,7 +6,7 @@ import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
 
 // for community features
-// import {Module, AllModules} from "@ag-community/grid-all-modules";
+// import {Module, CommunityModules} from "@ag-community/grid-all-modules";
 
 // for enterprise features
 import {Module, AllModules } from "@ag-enterprise/grid-all-modules";
