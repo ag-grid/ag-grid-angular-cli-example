@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-angular-cli-example",
-  "version": "22.0.0",
+  "version": "22.0.0-beta.0",
   "description": "ag-Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
@@ -19,13 +19,13 @@
   },
   "private": true,
   "dependencies": {
-    "@ag-community/grid-all-modules": "^22.0.0",
-    "@ag-community/grid-angular": "^22.0.0",
-    "@ag-community/grid-client-side-row-model": "^22.0.0",
-    "@ag-community/grid-core": "^22.0.0",
-    "@ag-community/grid-csv-export": "^22.0.0",
-    "@ag-community/grid-infinite-row-model": "^22.0.0",
-    "@ag-enterprise/grid-all-modules": "^22.0.0",
+    "@ag-community/grid-all-modules": "^22.0.0-beta.0",
+    "@ag-community/grid-angular": "^22.0.0-beta.0",
+    "@ag-community/grid-client-side-row-model": "^22.0.0-beta.0",
+    "@ag-community/grid-core": "^22.0.0-beta.0",
+    "@ag-community/grid-csv-export": "^22.0.0-beta.0",
+    "@ag-community/grid-infinite-row-model": "^22.0.0-beta.0",
+    "@ag-enterprise/grid-all-modules": "^22.0.0-beta.0",
     "@angular/animations": "8.2.7",
     "@angular/common": "8.2.7",
     "@angular/compiler": "8.2.7",
