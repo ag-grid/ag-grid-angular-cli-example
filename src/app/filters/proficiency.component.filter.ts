@@ -1,7 +1,7 @@
-import {IFilterParams} from "@ag-community/grid-core";
+import {IFilterParams} from "@ag-grid-community/grid-core";
 
 import {Component, OnDestroy} from "@angular/core";
-import {IFilterAngularComp} from "@ag-community/grid-angular/src/interfaces";
+import {IFilterAngularComp} from "@ag-grid-community/grid-angular/src/interfaces";
 
 @Component({
     template: `
