@@ -19,11 +19,11 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ],
-      "@ag-grid-community/grid-core": [
-        "../node_modules/@ag-grid-community/grid-core"
+      "@ag-grid-community/core": [
+        "../node_modules/@ag-grid-community/core"
       ],
-      "@ag-grid-community/grid-core/*": [
-        "../node_modules/@ag-grid-community/grid-core/*"
+      "@ag-grid-community/core/*": [
+        "../node_modules/@ag-grid-community/core/*"
       ]
     }
   },
