@@ -20,6 +20,7 @@
   "private": true,
   "dependencies": {
     "@ag-grid-enterprise/all-modules": "~22.0.0",
+    "@ag-grid-community/angular": "~22.0.0",
     "@angular/animations": "8.2.7",
     "@angular/common": "8.2.7",
     "@angular/compiler": "8.2.7",
@@ -36,6 +37,7 @@
     "zone.js": "0.10.2"
   },
   "devDependencies": {
+    "@ag-grid-community/core": "~22.0.0",
     "@angular-devkit/build-angular": "0.803.5",
     "@angular/cli": "8.3.5",
     "@types/jasmine": "3.3.9",

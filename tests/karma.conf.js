@@ -29,8 +29,8 @@ module.exports = function (config) {
         singleRun: false,
         // not strictly required for testing but useful when debugging the grid in action
         files: [
-            '../node_modules/@ag-grid-community/core/dist/styles/ag-grid.css',
-            '../node_modules/@ag-grid-community/core/dist/styles/ag-theme-balham.css'
+            '../node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-grid.css',
+            '../node_modules/@ag-grid-enterprise/all-modules/dist/styles/ag-theme-balham.css'
         ]
     });
 };

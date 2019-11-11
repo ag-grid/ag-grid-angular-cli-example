@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ColumnApi, GridApi} from "@ag-grid-community/core";
+import {ColumnApi, GridApi} from "@ag-grid-enterprise/all-modules";
 
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';

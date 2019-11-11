@@ -1,10 +1,10 @@
 import {Component, ViewChild, ViewContainerRef} from "@angular/core";
-import {ColumnApi, GridApi} from "@ag-grid-community/core";
+import {ColumnApi, GridApi} from "@ag-grid-enterprise/all-modules";
 import {AgGridModule, ICellEditorAngularComp} from "@ag-grid-community/angular";
 import {async, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 
-import {Module, AllCommunityModules} from "@ag-grid-community/all-modules";
+import {Module, AllCommunityModules} from "@ag-grid-enterprise/all-modules";
 
 @Component({
     template: `
