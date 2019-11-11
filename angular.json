@@ -19,6 +19,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "preserveSymlinks": true,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",

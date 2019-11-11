@@ -1,8 +1,10 @@
 import {Component, ViewChild, ViewContainerRef} from "@angular/core";
-import {ColumnApi, GridApi} from "ag-grid-community";
-import {AgGridModule, ICellEditorAngularComp} from "ag-grid-angular";
+import {ColumnApi, GridApi} from "@ag-grid-enterprise/all-modules";
+import {AgGridModule, ICellEditorAngularComp} from "@ag-grid-community/angular";
 import {async, TestBed} from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
+
+import {Module, AllCommunityModules} from "@ag-grid-enterprise/all-modules";
 
 @Component({
     template: `
@@ -56,6 +58,7 @@ export class EditorComponent implements ICellEditorAngularComp {
             <ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham"
                              [columnDefs]="columnDefs"
                              [rowData]="rowData"
+                             [modules]="modules"
 
                              [stopEditingWhenGridLosesFocus]="false"
 
@@ -66,6 +69,8 @@ export class EditorComponent implements ICellEditorAngularComp {
         </div>`
 })
 class TestHostComponent {
+    modules: Module[] = AllCommunityModules;
+
     rowData: any[] = [{name: 'Test Name', number: 42}];
 
     columnDefs: any[] = [

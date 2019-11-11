@@ -1,6 +1,6 @@
 import {Component, OnDestroy} from "@angular/core";
-import {IDateParams} from "ag-grid-community";
-import {IDateAngularComp} from "ag-grid-angular";
+import {IDateParams} from "@ag-grid-enterprise/all-modules";
+import {IDateAngularComp} from "@ag-grid-community/angular";
 
 
 @Component({
