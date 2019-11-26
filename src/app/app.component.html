@@ -1,1 +1,17 @@
-<rich-grid></rich-grid>
+<p>
+    ag-grid rowClicked Test (see browser console for errors)
+</p>
+
+<ag-grid-angular #agGrid
+                 style="width: 100%; height: 200px;"
+                 class="ag-theme-balham"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 [enableSorting]="true"
+                 [enableFilter]="true"
+                 [modules]="modules"
+                 rowSelection="multiple"
+                 (modelUpdated)="onModelUpdated($event)"
+                 (rowClicked)="onRowClicked($event)"
+                 (cellFocused)="onCellFocused($event)">
+</ag-grid-angular>
