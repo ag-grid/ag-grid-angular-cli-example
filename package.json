@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-angular-cli-example",
-  "version": "22.0.0",
+  "version": "23.0.0",
   "description": "ag-Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
@@ -19,8 +19,8 @@
   },
   "private": true,
   "dependencies": {
-    "@ag-grid-enterprise/all-modules": "~22.1.1",
-    "@ag-grid-community/angular": "~22.1.1",
+    "@ag-grid-enterprise/all-modules": "~23.0.0",
+    "@ag-grid-community/angular": "~23.0.0",
     "bootstrap": "4.4.1",
     "@angular/animations": "~9.0.0",
     "@angular/common": "~9.0.0",
@@ -35,7 +35,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@ag-grid-community/core": "~22.1.1",
+    "@ag-grid-community/core": "~23.0.0",
     "webdriver-manager": "12.1.1",
     "@angular-devkit/build-angular": "~0.900.1",
     "@angular-devkit/build-ng-packagr": "~0.900.1",
@@ -45,7 +45,7 @@
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
-    "ag-grid-community": "^22.1.1",
+    "ag-grid-community": "~23.0.0",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
