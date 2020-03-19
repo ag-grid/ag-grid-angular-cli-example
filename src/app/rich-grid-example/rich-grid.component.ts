@@ -1,24 +1,21 @@
 import {Component, ViewEncapsulation} from "@angular/core";
-import {ColumnApi, GridApi} from "@ag-grid-enterprise/all-modules";
+// for enterprise features
+import {AllModules, ColumnApi, GridApi, Module} from "@ag-grid-enterprise/all-modules";
 
 import {ProficiencyFilter} from '../filters/proficiency.component.filter';
 import {SkillFilter} from '../filters/skill.component.filter';
 import RefData from '../data/refData';
-
-// for community features
-// import {Module, CommunityModules} from "@ag-grid-community/all-modules";
-
-// for enterprise features
-import {Module, AllModules } from "@ag-grid-enterprise/all-modules";
-
-// set your key here
-// import {LicenseManager} from "@ag-grid-enterprise/all-modules";
-// LicenseManager.setLicenseKey(<your key>);
-
 import {HeaderGroupComponent} from "../header-group-component/header-group.component";
 import {DateComponent} from "../date-component/date.component";
 import {SortableHeaderComponent} from "../header-component/sortable-header.component";
 import {RendererComponent} from "../renderer-component/renderer.component";
+
+// for community features
+// import {Module, CommunityModules} from "@ag-grid-community/all-modules";
+
+// set your key here
+// import {LicenseManager} from "@ag-grid-enterprise/all-modules";
+// LicenseManager.setLicenseKey(<your key>);
 
 @Component({
     selector: 'rich-grid',
@@ -94,7 +91,7 @@ export class RichGridComponent {
         this.columnDefs = [
             {
                 headerName: '#',
-                width: 30,
+                width: 40,
                 checkboxSelection: true,
                 filter: false,
                 sortable: false,
@@ -222,20 +219,22 @@ export class RichGridComponent {
     }
 
     public invokeSkillsFilterMethod() {
-        let skillsFilter = this.api.getFilterInstance('skills');
-        let componentInstance = skillsFilter.getFrameworkComponentInstance();
-        componentInstance.helloFromSkillsFilter();
+        this.api.getFilterInstance('skills', (instance) => {
+            let componentInstance = instance.getFrameworkComponentInstance();
+            componentInstance.helloFromSkillsFilter();
+        });
     }
 
     public dobFilter() {
-        let dateFilterComponent = this.api.getFilterInstance('dob');
-        dateFilterComponent.setModel({
-            type: 'equals',
-            dateFrom: '2000-01-01'
-        });
+        this.api.getFilterInstance('dob', (dateFilterComponent) => {
+            dateFilterComponent.setModel({
+                type: 'equals',
+                dateFrom: '2000-01-01'
+            });
 
-        this.api.onFilterChanged();
-    };
+            this.api.onFilterChanged();
+        });
+    }
 }
 
 function skillsCellRenderer(params) {
