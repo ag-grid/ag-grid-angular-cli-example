@@ -11,7 +11,8 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --port 8080",
-    "build": "ng build --aot --prod",
+    "build": "ng build --aot --prod && npm run hash",
+    "hash": "sh ./hashDirectory.sh > .hash",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test --watch false --browsers ChromeHeadless",
     "pree2e": "webdriver-manager update",
