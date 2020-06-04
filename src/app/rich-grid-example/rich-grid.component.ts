@@ -167,12 +167,12 @@ export class RichGridComponent {
                     {
                         field: 'mobile',
                         cellRendererFramework: RendererComponent,
-                        width: 150,
+                        minWidth: 150,
                         filter: 'agTextColumnFilter'
                     },
                     {
                         field: 'address',
-                        width: 500,
+                        minWidth: 500,
                         filter: 'agTextColumnFilter'
                     }
                 ]
@@ -199,6 +199,8 @@ export class RichGridComponent {
 
         this.api = params.api;
         this.columnApi = params.columnApi;
+
+        this.api.sizeColumnsToFit();
 
         this.calculateRowCount();
     }
