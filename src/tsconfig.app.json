@@ -6,6 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true,
     "lib": [
       "es2016",
       "dom"
