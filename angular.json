@@ -74,6 +74,7 @@
             "tsConfig": "tests/tsconfig.spec.json",
             "polyfills": "tests/polyfills.ts",
             "karmaConfig": "tests/karma.conf.js",
+            "preserveSymlinks": true,
             "styles": [
             ],
             "scripts": [],

@@ -14,7 +14,7 @@
     "build": "ng build --aot --prod && npm run hash",
     "hash": "sh ./hashDirectory.sh > .hash",
     "lint": "tslint \"src/**/*.ts\"",
-    "testx": "ng test --watch false --browsers ChromeHeadless",
+    "test": "ng test --watch false --browsers ChromeHeadless",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
