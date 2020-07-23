@@ -27,8 +27,4 @@ export class HeaderGroupComponent implements OnDestroy, IHeaderGroupAngularComp 
     onExpandChanged() {
         this.expanded = this.params.columnGroup.getOriginalColumnGroup().isExpanded()
     }
-
-    refresh(params) : boolean {
-        return true;
-    }
 }
