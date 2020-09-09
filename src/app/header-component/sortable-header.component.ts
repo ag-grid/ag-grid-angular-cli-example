@@ -52,4 +52,8 @@ export class SortableHeaderComponent implements OnDestroy, IHeaderAngularComp {
         return <HTMLElement>this.elementRef.nativeElement.querySelector(
             '.customHeaderMenuButton', selector);
     }
+
+    refresh(params) : boolean {
+        return true;
+    }
 }

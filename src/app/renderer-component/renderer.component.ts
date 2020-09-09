@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {ICellRendererAngularComp} from '@ag-grid-community/angular';
 
 @Component({
     selector: 'app-renderer-component',
@@ -6,7 +7,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
         <span>{{value}}</span>
     `
 })
-export class RendererComponent implements OnInit {
+export class RendererComponent implements OnInit, ICellRendererAngularComp {
     value: any;
 
     // a simple renderer just to illustrate that normal Angular DI will work in grid components
@@ -20,5 +21,10 @@ export class RendererComponent implements OnInit {
 
     ngOnInit() {
         this.renderer.setStyle(this.el.nativeElement, 'background-color', 'lightblue');
+    }
+
+    refresh(params: any): boolean {
+        this.value = params.value;
+        return true;
     }
 }
