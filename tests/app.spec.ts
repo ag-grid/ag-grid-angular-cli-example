@@ -1,7 +1,7 @@
 import {Component, ViewChild, ViewContainerRef} from "@angular/core";
 import {ColumnApi, GridApi} from "@ag-grid-enterprise/all-modules";
 import {AgGridModule, ICellEditorAngularComp} from "@ag-grid-community/angular";
-import {async, TestBed} from "@angular/core/testing";
+import { TestBed, waitForAsync } from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 
 import {Module, AllCommunityModules} from "@ag-grid-enterprise/all-modules";
@@ -97,7 +97,7 @@ describe('angular-cli App', function () {
     let fixture: any;
     let component: TestHostComponent;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [
                 FormsModule,
