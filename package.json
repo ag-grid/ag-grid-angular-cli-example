@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-angular-cli-example",
-  "version": "25.1.0",
+  "version": "100.0.0",
   "description": "AG Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
@@ -20,8 +20,8 @@
   },
   "private": true,
   "dependencies": {
-    "@ag-grid-enterprise/all-modules": "~25.1.0",
-    "@ag-grid-community/angular": "~25.1.0",
+    "@ag-grid-enterprise/all-modules": "~100.0.0",
+    "@ag-grid-community/angular": "~100.0.0",
     "bootstrap": "4.5.0",
     "@angular/animations": "~11.2.0",
     "@angular/common": "~11.2.0",
@@ -36,7 +36,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@ag-grid-community/core": "~25.1.0",
+    "@ag-grid-community/core": "~100.0.0",
     "webdriver-manager": "12.1.7",
     "@angular-devkit/build-angular": "~0.1102.0",
     "@angular/cli": "~11.2.0",
