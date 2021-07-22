@@ -34,7 +34,7 @@
         <div style="display: inline-block; width: 100%; margin-top: 10px; margin-bottom: 10px">
             <div style="float: left">
                 <label for="sideBarToggle">Show Side Bar&nbsp;</label>
-                <input type="checkbox" id="sideBarToggle" (change)="sideBar=$event.target.checked" style="margin-right: 5px"/>
+                <input type="checkbox" id="sideBarToggle" (change)="toggleSidebar($event)" style="margin-right: 5px" />
             </div>
             <div style="float: right; margin-left: 20px">
                 <label for="quickFilter">Quick Filter:&nbsp;</label>
@@ -53,11 +53,11 @@
                      [frameworkComponents]="frameworkComponents"
                      [modules]="modules"
 
-                     enableCharts
-                     enableRangeSelection
+                     [enableCharts]="true"
+                     [enableRangeSelection]="true"
 
-                     suppressRowClickSelection
-                     rowSelection="multiple"
+                     [suppressRowClickSelection]="true"
+                     [rowSelection]="'multiple'"
 
                      (gridReady)="onGridReady($event)"
                      (modelUpdated)="onModelUpdated()"
