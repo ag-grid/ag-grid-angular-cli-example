@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 // for enterprise features
-import { AllModules, ColumnApi, GridApi, Module } from '@ag-grid-enterprise/all-modules';
+import { AllModules, ColumnApi, GridApi, Module, ColDef, ColGroupDef } from '@ag-grid-enterprise/all-modules';
 
 import { ProficiencyFilter } from '../filters/proficiency.component.filter';
 import { SkillFilter } from '../filters/skill.component.filter';
@@ -25,7 +25,7 @@ import { RendererComponent } from '../renderer-component/renderer.component';
 })
 export class RichGridComponent {
     public rowData: any[];
-    public columnDefs: any[];
+    public columnDefs: (ColDef | ColGroupDef)[];
     public rowCount: string;
 
     public defaultColDef: any;
