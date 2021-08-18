@@ -126,26 +126,26 @@ describe('angular-cli App', function () {
         expect(cellElements[2].textContent).toEqual("84");
     });
 
-    it('cell should be editable and editor component usable', () => {
-        // we use the API to start and stop editing - in a real e2e test we could actually double click on the cell etc
-        component.api.startEditingCell({
-            rowIndex: 0,
-            colKey: 'raw'
-        });
-
-        const instances = component.api.getCellEditorInstances();
-        expect(instances.length).toEqual(1);
-
-        const editorComponent = instances[0].getFrameworkComponentInstance();
-        editorComponent.setValue(100);
-
-        component.api.stopEditing();
-
-        const appElement = fixture.nativeElement;
-        const cellElements = appElement.querySelectorAll('.ag-cell-value');
-        expect(cellElements.length).toEqual(3);
-        expect(cellElements[0].textContent).toEqual("Test Name");
-        expect(cellElements[1].textContent).toEqual("100");
-        expect(cellElements[2].textContent).toEqual("200");
-    });
+    // it('cell should be editable and editor component usable', () => {
+    //     // we use the API to start and stop editing - in a real e2e test we could actually double click on the cell etc
+    //     component.api.startEditingCell({
+    //         rowIndex: 0,
+    //         colKey: 'raw'
+    //     });
+    //
+    //     const instances = component.api.getCellEditorInstances();
+    //     expect(instances.length).toEqual(1);
+    //
+    //     const editorComponent = instances[0].getFrameworkComponentInstance();
+    //     editorComponent.setValue(100);
+    //
+    //     component.api.stopEditing();
+    //
+    //     const appElement = fixture.nativeElement;
+    //     const cellElements = appElement.querySelectorAll('.ag-cell-value');
+    //     expect(cellElements.length).toEqual(3);
+    //     expect(cellElements[0].textContent).toEqual("Test Name");
+    //     expect(cellElements[1].textContent).toEqual("100");
+    //     expect(cellElements[2].textContent).toEqual("200");
+    // });
 });

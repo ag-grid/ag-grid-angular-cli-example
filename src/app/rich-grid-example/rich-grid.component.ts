@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 // for enterprise features
-import { AllModules, ColumnApi, GridApi, Module } from '@ag-grid-enterprise/all-modules';
+import { AllModules, ColumnApi, GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent } from '@ag-grid-enterprise/all-modules';
 
 import { ProficiencyFilter } from '../filters/proficiency.component.filter';
 import { SkillFilter } from '../filters/skill.component.filter';
@@ -25,10 +25,10 @@ import { RendererComponent } from '../renderer-component/renderer.component';
 })
 export class RichGridComponent {
     public rowData: any[];
-    public columnDefs: any[];
+    public columnDefs: (ColDef | ColGroupDef)[];
     public rowCount: string;
 
-    public defaultColDef: any;
+    public defaultColDef: ColDef;
     public frameworkComponents: any;
     public sideBar: false;
 
@@ -194,7 +194,7 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    public onGridReady(params) {
+    public onGridReady(params: GridReadyEvent) {
         console.log('onGridReady');
 
         this.api = params.api;
@@ -205,15 +205,15 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    public onCellClicked($event) {
+    public onCellClicked($event: CellClickedEvent) {
         console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onCellDoubleClicked($event) {
+    public onCellDoubleClicked($event: CellDoubleClickedEvent) {
         console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onCellContextMenu($event) {
+    public onCellContextMenu($event: CellContextMenuEvent) {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
@@ -237,6 +237,10 @@ export class RichGridComponent {
 
             this.api.onFilterChanged();
         });
+    }
+
+    public toggleSidebar($event) {
+        this.sideBar = $event.target.checked;
     }
 }
 
