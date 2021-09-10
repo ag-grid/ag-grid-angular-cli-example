@@ -1,4 +1,3 @@
-
 AG Grid Angular CLI Example
 ==================================
 
