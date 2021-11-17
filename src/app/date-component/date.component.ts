@@ -14,6 +14,7 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
     public dd: string = '';
     public mm: string = '';
     public yyyy: string = '';
+    public disabled: boolean = false;
 
     agInit(params: IDateParams): void {
         this.params = params;
@@ -59,6 +60,10 @@ export class DateComponent implements OnDestroy, IDateAngularComp {
         } else {
             this.setDateToEmpty();
         }
+    }
+
+    setDisabled(disabled: boolean): void {
+        this.disabled = disabled;
     }
 
     //*********************************************************************************
