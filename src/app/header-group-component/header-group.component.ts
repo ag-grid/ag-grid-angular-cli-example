@@ -12,7 +12,7 @@ export class HeaderGroupComponent implements OnDestroy, IHeaderGroupAngularComp 
 
     agInit(params: IHeaderGroupParams): void {
         this.params = params;
-        this.params.columnGroup.getOriginalColumnGroup().addEventListener('expandedChanged', this.onExpandChanged.bind(this));
+        this.params.columnGroup.getProvidedColumnGroup().addEventListener('expandedChanged', this.onExpandChanged.bind(this));
     }
 
     ngOnDestroy() {
@@ -25,6 +25,6 @@ export class HeaderGroupComponent implements OnDestroy, IHeaderGroupAngularComp 
     };
 
     onExpandChanged() {
-        this.expanded = this.params.columnGroup.getOriginalColumnGroup().isExpanded()
+        this.expanded = this.params.columnGroup.getProvidedColumnGroup().isExpanded()
     }
 }
