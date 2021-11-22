@@ -223,8 +223,7 @@ export class RichGridComponent {
 
     public invokeSkillsFilterMethod() {
         this.api.getFilterInstance('skills', (instance) => {
-            let componentInstance = instance.getFrameworkComponentInstance();
-            componentInstance.helloFromSkillsFilter();
+            (instance as any).helloFromSkillsFilter();
         });
     }
 
