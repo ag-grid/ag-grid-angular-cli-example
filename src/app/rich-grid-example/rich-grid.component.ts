@@ -166,7 +166,7 @@ export class RichGridComponent {
                 children: [
                     {
                         field: 'mobile',
-                        cellRendererFramework: RendererComponent,
+                        cellRenderer: RendererComponent,
                         minWidth: 150,
                         filter: 'agTextColumnFilter'
                     },
