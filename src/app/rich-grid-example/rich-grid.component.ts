@@ -29,7 +29,7 @@ export class RichGridComponent {
     public rowCount: string;
 
     public defaultColDef: ColDef;
-    public frameworkComponents: any;
+    public components: any;
     public sideBar: false;
 
     public modules: Module[] = AllModules;
@@ -49,7 +49,7 @@ export class RichGridComponent {
             }
         };
 
-        this.frameworkComponents = {
+        this.components = {
             sortableHeaderComponent: SortableHeaderComponent,
             agDateInput: DateComponent,
             headerGroupComponent: HeaderGroupComponent,
@@ -148,7 +148,7 @@ export class RichGridComponent {
                         sortable: false,
                         cellRenderer: skillsCellRenderer,
                         menuTabs: ['filterMenuTab'],
-                        filterFramework: SkillFilter,
+                        filter: SkillFilter,
                         enableRowGroup: true,
                         enablePivot: true
                     },
@@ -157,7 +157,7 @@ export class RichGridComponent {
                         width: 160,
                         cellRenderer: percentCellRenderer,
                         menuTabs: ['filterMenuTab'],
-                        filterFramework: ProficiencyFilter
+                        filter: ProficiencyFilter
                     },
                 ]
             },
@@ -166,7 +166,7 @@ export class RichGridComponent {
                 children: [
                     {
                         field: 'mobile',
-                        cellRendererFramework: RendererComponent,
+                        cellRenderer: RendererComponent,
                         minWidth: 150,
                         filter: 'agTextColumnFilter'
                     },
@@ -223,8 +223,7 @@ export class RichGridComponent {
 
     public invokeSkillsFilterMethod() {
         this.api.getFilterInstance('skills', (instance) => {
-            let componentInstance = instance.getFrameworkComponentInstance();
-            componentInstance.helloFromSkillsFilter();
+            (instance as any).helloFromSkillsFilter();
         });
     }
 

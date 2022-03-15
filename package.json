@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-angular-cli-example",
-  "version": "26.2.0",
+  "version": "27.1.0",
   "description": "AG Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
@@ -13,15 +13,12 @@
     "start": "ng serve --port 8080",
     "build": "ng build --aot --prod && npm run hash",
     "hash": "sh ./hashDirectory.sh > .hash",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test --watch false --browsers ChromeHeadless",
-    "pree2e": "webdriver-manager update",
-    "e2e": "protractor"
+    "lint": "tslint \"src/**/*.ts\""
   },
   "private": true,
   "dependencies": {
-    "@ag-grid-community/angular": "~26.2.0",
-    "@ag-grid-enterprise/all-modules": "~26.2.0",
+    "@ag-grid-community/angular": "~27.1.0",
+    "@ag-grid-enterprise/all-modules": "~27.1.0",
     "@angular/animations": "~11.2.12",
     "@angular/common": "~11.2.12",
     "@angular/compiler": "~11.2.12",
@@ -36,7 +33,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@ag-grid-community/core": "~26.2.0",
+    "@ag-grid-community/core": "~27.1.0",
     "@angular-devkit/build-angular": "~0.1102.11",
     "@angular/cli": "~11.2.11",
     "@angular/compiler-cli": "~11.2.12",
@@ -53,10 +50,8 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
     "ng-packagr": "^11.0.3",
-    "protractor": "~7.0.0",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.5",
-    "webdriver-manager": "12.1.7"
+    "typescript": "~4.0.5"
   }
 }
