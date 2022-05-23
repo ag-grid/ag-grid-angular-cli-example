@@ -10,7 +10,7 @@
   "author": "Sean Landsman <sean@thelandsmans.com>",
   "scripts": {
     "start": "ng serve --port 8080",
-    "build": "ng build --aot --prod && npm run hash",
+	"build": "ng build --aot && npm run hash",
     "build-prod": "npm run build",
     "hash": "sh ./hashDirectory.sh > .hash",
     "lint": "tslint \"src/**/*.ts\""
