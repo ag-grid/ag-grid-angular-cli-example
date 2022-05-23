@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from "@angular/core";
-import {IHeaderGroupParams} from "@ag-grid-enterprise/all-modules";
+import { IHeaderGroupParams } from "@ag-grid-community/core";
 import {IHeaderGroupAngularComp} from "@ag-grid-community/angular";
 
 @Component({
@@ -7,8 +7,8 @@ import {IHeaderGroupAngularComp} from "@ag-grid-community/angular";
     styleUrls: ['header-group.component.css']
 })
 export class HeaderGroupComponent implements OnDestroy, IHeaderGroupAngularComp {
-    public params: IHeaderGroupParams;
-    public expanded: boolean;
+    public params!: IHeaderGroupParams;
+    public expanded!: boolean;
 
     agInit(params: IHeaderGroupParams): void {
         this.params = params;

@@ -28,7 +28,7 @@ export default class RefData {
         new Date(2011, 11, 12)
     ];
 
-    static COUNTRY_CODES = {
+    static COUNTRY_CODES: Record<string, string> = {
         Ireland: "ie",
         Spain: "es",
         "United Kingdom": "gb",
