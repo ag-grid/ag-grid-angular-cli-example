@@ -1,6 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 // for enterprise features
-import { AllModules, ColumnApi, GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent } from '@ag-grid-enterprise/all-modules';
+import { ColumnApi, GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent, ICellRendererParams } from '@ag-grid-community/core';
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+import { MenuModule } from '@ag-grid-enterprise/menu';
+import { SideBarModule } from '@ag-grid-enterprise/side-bar';
+import { ColumnsToolPanelModule } from '@ag-grid-enterprise/column-tool-panel';
+import { FiltersToolPanelModule } from '@ag-grid-enterprise/filter-tool-panel';
+import { RowGroupingModule } from '@ag-grid-enterprise/row-grouping';
+import { StatusBarModule } from '@ag-grid-enterprise/status-bar';
 
 import { ProficiencyFilter } from '../filters/proficiency.component.filter';
 import { SkillFilter } from '../filters/skill.component.filter';
@@ -9,12 +16,10 @@ import { HeaderGroupComponent } from '../header-group-component/header-group.com
 import { DateComponent } from '../date-component/date.component';
 import { SortableHeaderComponent } from '../header-component/sortable-header.component';
 import { RendererComponent } from '../renderer-component/renderer.component';
-
-// for community features
-// import {Module, CommunityModules} from "@ag-grid-community/all-modules";
+import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
 
 // set your key here
-// import {LicenseManager} from "@ag-grid-enterprise/all-modules";
+// import {LicenseManager} from "@ag-grid-community/core";
 // LicenseManager.setLicenseKey(<your key>);
 
 @Component({
@@ -24,18 +29,27 @@ import { RendererComponent } from '../renderer-component/renderer.component';
     encapsulation: ViewEncapsulation.None
 })
 export class RichGridComponent {
-    public rowData: any[];
-    public columnDefs: (ColDef | ColGroupDef)[];
-    public rowCount: string;
+    public rowData!: any[];
+    public columnDefs!: (ColDef | ColGroupDef)[];
+    public rowCount!: string;
 
     public defaultColDef: ColDef;
     public components: any;
-    public sideBar: false;
+    public sideBar!: boolean;
 
-    public modules: Module[] = AllModules;
+    public modules: Module[] = [
+        ClientSideRowModelModule,
+        MenuModule,
+        SideBarModule,
+        ColumnsToolPanelModule,
+        FiltersToolPanelModule,
+        StatusBarModule,
+        RowGroupingModule,
+        SetFilterModule
+    ];
 
-    public api: GridApi;
-    public columnApi: ColumnApi;
+    public api!: GridApi;
+    public columnApi!: ColumnApi;
 
     constructor() {
         this.defaultColDef = {
@@ -128,7 +142,7 @@ export class RichGridComponent {
                         field: 'dob',
                         width: 195,
                         pinned: true,
-                        cellRenderer: (params) => {
+                        cellRenderer: (params: ICellRendererParams) => {
                             return pad(params.value.getDate(), 2) + '/' +
                                 pad(params.value.getMonth() + 1, 2) + '/' +
                                 params.value.getFullYear();
@@ -217,7 +231,7 @@ export class RichGridComponent {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onQuickFilterChanged($event) {
+    public onQuickFilterChanged($event: any) {
         this.api.setQuickFilter($event.target.value);
     }
 
@@ -228,7 +242,7 @@ export class RichGridComponent {
     }
 
     public dobFilter() {
-        this.api.getFilterInstance('dob', (dateFilterComponent) => {
+        this.api.getFilterInstance('dob', (dateFilterComponent: any) => {
             dateFilterComponent.setModel({
                 type: 'equals',
                 dateFrom: '2000-01-01'
@@ -238,14 +252,14 @@ export class RichGridComponent {
         });
     }
 
-    public toggleSidebar($event) {
+    public toggleSidebar($event: any) {
         this.sideBar = $event.target.checked;
     }
 }
 
-function skillsCellRenderer(params) {
+function skillsCellRenderer(params: ICellRendererParams) {
     const data = params.data;
-    const skills = [];
+    const skills: string[] = [];
     RefData.IT_SKILLS.forEach(function(skill) {
         if (data && data.skills && data.skills[skill]) {
             skills.push(`<img src="images/skills/${skill}.png" width="16px" title="${skill}" />`);
@@ -254,7 +268,7 @@ function skillsCellRenderer(params) {
     return skills.join(' ');
 }
 
-function countryCellRenderer(params) {
+function countryCellRenderer(params: ICellRendererParams) {
     return `<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/${RefData.COUNTRY_CODES[params.value]}.png'>${params.value}`;
 }
 
@@ -269,7 +283,7 @@ function createRandomPhoneNumber() {
     return result;
 }
 
-function percentCellRenderer(params) {
+function percentCellRenderer(params: ICellRendererParams) {
     const value = params.value;
 
     const eDivPercentBar = document.createElement('div');
@@ -296,7 +310,7 @@ function percentCellRenderer(params) {
 }
 
 // Utility function used to pad the date formatting.
-function pad(num, totalStringSize) {
+function pad(num: number, totalStringSize: number) {
     let asString = num + '';
     while (asString.length < totalStringSize) { asString = '0' + asString; }
     return asString;

@@ -1,4 +1,4 @@
-import {IFilterParams} from "@ag-grid-enterprise/all-modules";
+import { IDoesFilterPassParams, IFilterParams, ValueGetterParams } from "@ag-grid-community/core";
 
 import {Component, OnDestroy} from "@angular/core";
 import {IFilterAngularComp} from "@ag-grid-community/angular";
@@ -40,7 +40,7 @@ export class ProficiencyFilter implements OnDestroy, IFilterAngularComp {
 
     public selected: any = this.PROFICIENCIES[0];
 
-    public params: IFilterParams;
+    public params!: IFilterParams;
 
     constructor() {
     }
@@ -58,8 +58,8 @@ export class ProficiencyFilter implements OnDestroy, IFilterAngularComp {
         this.params.filterChangedCallback();
     }
 
-    public doesFilterPass(params) {
-        const value = this.params.valueGetter(params);
+    public doesFilterPass(params: IDoesFilterPassParams) {
+        const value = this.params.valueGetter(params as ValueGetterParams);
         const valueAsNumber = parseFloat(value);
         return valueAsNumber >= this.selected.threshold;
     }
