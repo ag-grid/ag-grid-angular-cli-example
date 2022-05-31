@@ -19,7 +19,7 @@ import { RendererComponent } from '../renderer-component/renderer.component';
 import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
 
 // set your key here
-// import {LicenseManager} from "@ag-grid-community/core";
+// import {LicenseManager} from "@ag-grid-enterprise/core";
 // LicenseManager.setLicenseKey(<your key>);
 
 @Component({
