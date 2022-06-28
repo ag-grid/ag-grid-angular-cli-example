@@ -42,8 +42,8 @@ module.exports = function (config) {
     restartOnFileChange: true,
     // not strictly required for testing but useful when debugging the grid in action
     files: [
-      '../node_modules/@ag-grid-community/core/dist/styles/ag-grid.css',
-      '../node_modules/@ag-grid-community/core/dist/styles/ag-theme-balham.css'
+      '../node_modules/@ag-grid-community/styles/ag-grid.css',
+      '../node_modules/@ag-grid-community/styles/ag-theme-balham.css'
     ]
   });
 };
