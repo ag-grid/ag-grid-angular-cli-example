@@ -24,11 +24,14 @@
       ],
       "@ag-grid-community/core/*": [
         "../node_modules/@ag-grid-community/core/*"
+      ],
+      "@ag-grid-community/angular": [
+        "../node_modules/@ag-grid-community/angular"
+      ],
+      "@ag-grid-community/angular/*": [
+        "../node_modules/@ag-grid-community/angular/*"
       ]
     }
-  },
-  "angularCompilerOptions": {
-    "enableIvy": false
   },
   "exclude": [
     "test.ts",

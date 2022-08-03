@@ -18,16 +18,7 @@ import {SkillFilter} from "./filters/skill.component.filter";
     imports: [
         BrowserModule,
         FormsModule,
-        AgGridModule.withComponents(
-            [
-                DateComponent,
-                SortableHeaderComponent,
-                HeaderGroupComponent,
-                RendererComponent,
-                ProficiencyFilter,
-                SkillFilter
-            ]
-        )
+        AgGridModule
     ],
     declarations: [
         AppComponent,
