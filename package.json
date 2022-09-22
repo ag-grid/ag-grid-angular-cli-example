@@ -54,5 +54,11 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.3.5"
+  },
+  "nx": {
+    "implicitDependencies": [
+      "@ag-grid-community/angular",
+      "@ag-grid-enterprise/all-modules"
+    ]
   }
 }
