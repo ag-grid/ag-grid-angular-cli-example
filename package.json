@@ -20,6 +20,7 @@
     "@ag-grid-community/angular": "~28.1.0",
     "@ag-grid-community/core": "~28.1.0",
     "@ag-grid-community/client-side-row-model": "~28.1.0",
+    "@ag-grid-enterprise/core": "~28.1.0",
     "@ag-grid-enterprise/menu": "~28.1.0",
     "@ag-grid-enterprise/side-bar": "~28.1.0",
     "@ag-grid-enterprise/column-tool-panel": "~28.1.0",
