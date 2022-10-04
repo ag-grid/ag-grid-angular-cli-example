@@ -17,6 +17,7 @@ import { DateComponent } from '../date-component/date.component';
 import { SortableHeaderComponent } from '../header-component/sortable-header.component';
 import { RendererComponent } from '../renderer-component/renderer.component';
 import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
+import { RangeSelectionModule } from '@ag-grid-enterprise/range-selection';
 
 // set your key here
 // import {LicenseManager} from "@ag-grid-enterprise/core";
@@ -45,7 +46,8 @@ export class RichGridComponent {
         FiltersToolPanelModule,
         StatusBarModule,
         RowGroupingModule,
-        SetFilterModule
+        SetFilterModule,
+        RangeSelectionModule
     ];
 
     public api!: GridApi;
