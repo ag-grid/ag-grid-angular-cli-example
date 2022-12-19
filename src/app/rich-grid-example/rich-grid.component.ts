@@ -137,7 +137,7 @@ export class RichGridComponent {
                         },
                         enableRowGroup: true,
                         enablePivot: true,
-                        columnGroupShow: 'show'
+                        columnGroupShow: 'open'
                     },
                     {
                         headerName: 'DOB',
