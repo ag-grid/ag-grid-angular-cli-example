@@ -29,6 +29,7 @@
     "@ag-grid-enterprise/set-filter": "~29.0.0",
     "@ag-grid-enterprise/status-bar": "~29.0.0",
     "@ag-grid-enterprise/range-selection": "~29.0.0",
+    "@ag-grid-enterprise/charts": "~29.0.0",
     "@ag-grid-community/styles": "~29.0.0",
     "@angular/animations": "~12.2.0",
     "@angular/common": "~12.2.0",
