@@ -16,6 +16,7 @@ import { HeaderGroupComponent } from '../header-group-component/header-group.com
 import { DateComponent } from '../date-component/date.component';
 import { SortableHeaderComponent } from '../header-component/sortable-header.component';
 import { RendererComponent } from '../renderer-component/renderer.component';
+import { GridChartsModule } from '@ag-grid-enterprise/charts';
 import { SetFilterModule } from '@ag-grid-enterprise/set-filter';
 import { RangeSelectionModule } from '@ag-grid-enterprise/range-selection';
 
@@ -45,6 +46,7 @@ export class RichGridComponent {
         ColumnsToolPanelModule,
         FiltersToolPanelModule,
         StatusBarModule,
+        GridChartsModule,
         RowGroupingModule,
         SetFilterModule,
         RangeSelectionModule
@@ -137,7 +139,7 @@ export class RichGridComponent {
                         },
                         enableRowGroup: true,
                         enablePivot: true,
-                        columnGroupShow: 'show'
+                        columnGroupShow: 'open'
                     },
                     {
                         headerName: 'DOB',
