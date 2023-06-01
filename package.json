@@ -9,7 +9,7 @@
   },
   "author": "Sean Landsman <sean@thelandsmans.com>",
   "scripts": {
-    "start": "ng serve --port 8080",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider ng serve --port 8080",
     "build": "NODE_OPTIONS=\"--openssl-legacy-provider --max-old-space-size=8192\" ng build --aot && npm run hash",
     "build-prod": "npm run build",
     "hash": "sh ./hashDirectory.sh > .hash",
