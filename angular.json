@@ -97,6 +97,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ag-grid-angular-cli-example"
+  }
 }
