@@ -53,7 +53,6 @@ export class RichGridComponent {
     ];
 
     public api!: GridApi;
-    public columnApi!: ColumnApi;
 
     constructor() {
         this.defaultColDef = {
@@ -217,8 +216,6 @@ export class RichGridComponent {
         console.log('onGridReady');
 
         this.api = params.api;
-        this.columnApi = params.columnApi;
-
         this.api.sizeColumnsToFit();
 
         this.calculateRowCount();
