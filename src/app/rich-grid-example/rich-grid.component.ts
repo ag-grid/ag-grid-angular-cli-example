@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 // for enterprise features
-import { ColumnApi, GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent, ICellRendererParams } from '@ag-grid-community/core';
+import { GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent, ICellRendererParams } from '@ag-grid-community/core';
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { MenuModule } from '@ag-grid-enterprise/menu';
 import { SideBarModule } from '@ag-grid-enterprise/side-bar';
