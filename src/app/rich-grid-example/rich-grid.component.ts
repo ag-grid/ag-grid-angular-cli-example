@@ -56,8 +56,6 @@ export class RichGridComponent {
 
     constructor() {
         this.defaultColDef = {
-            resizable: true,
-            sortable: true,
             filter: true,
             floatingFilter: true,
             headerComponent: 'sortableHeaderComponent',
