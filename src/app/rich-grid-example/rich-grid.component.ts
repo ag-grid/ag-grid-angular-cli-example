@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 // for enterprise features
-import { ColumnApi, GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent, ICellRendererParams } from '@ag-grid-community/core';
+import { GridApi, Module, ColDef, ColGroupDef, GridReadyEvent, CellClickedEvent, CellDoubleClickedEvent, CellContextMenuEvent, ICellRendererParams } from '@ag-grid-community/core';
 import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
 import { MenuModule } from '@ag-grid-enterprise/menu';
 import { SideBarModule } from '@ag-grid-enterprise/side-bar';
@@ -53,18 +53,16 @@ export class RichGridComponent {
     ];
 
     public api!: GridApi;
-    public columnApi!: ColumnApi;
 
     constructor() {
         this.defaultColDef = {
-            resizable: true,
-            sortable: true,
             filter: true,
             floatingFilter: true,
             headerComponent: 'sortableHeaderComponent',
             headerComponentParams: {
                 menuIcon: 'fa-bars'
-            }
+            },
+            cellDataType: false,
         };
 
         this.components = {
@@ -216,8 +214,6 @@ export class RichGridComponent {
         console.log('onGridReady');
 
         this.api = params.api;
-        this.columnApi = params.columnApi;
-
         this.api.sizeColumnsToFit();
 
         this.calculateRowCount();
