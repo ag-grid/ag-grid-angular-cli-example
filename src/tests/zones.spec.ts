@@ -138,6 +138,7 @@ describe('GridWrapperComponent', () => {
 
         fixture.detectChanges();
 
+        // We have to use setTimouts as we have disabled the AG_GRID_UNDER_TEST flag
         setTimeout(() => {
             api.updateGridOptions({ columnDefs: [{ field: 'make' }, { field: 'model' }] });
             fixture.detectChanges();
